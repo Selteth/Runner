@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MovementControl : MonoBehaviour
 {
-    public float moveForce = 365f;          // Amount of force added to move the player left and right.
-    public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
+    [Header("Horizontal movement")]
+    public float moveForce = 365f;          // Amount of force added to move the player left and right
+    public float maxSpeed = 5f;				// The fastest the player can travel in the x axis
 
     /* Components */
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;      // Used new to disable warning about hiding base member
 
     void Awake()
     {
@@ -30,11 +31,13 @@ public class MovementControl : MonoBehaviour
     void FixedUpdate()
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
-
+        
         MoveHorizontal(horizontalAxis);
+        
     }
 
-    void MoveHorizontal(float horizontalAxis)
+    // Handles horizontal movement
+    private void MoveHorizontal(float horizontalAxis)
     {
         /* Accelerate the speed */
         if (horizontalAxis * rigidbody.velocity.x < maxSpeed)
@@ -44,4 +47,5 @@ public class MovementControl : MonoBehaviour
         if (Mathf.Abs(rigidbody.velocity.x) > maxSpeed)
             rigidbody.velocity = new Vector2(Mathf.Sign(rigidbody.velocity.x) * maxSpeed, rigidbody.velocity.y);
     }
+
 }
