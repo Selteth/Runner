@@ -5,47 +5,58 @@ using UnityEngine;
 public class MovementControl : MonoBehaviour
 {
     [Header("Horizontal movement")]
-    public float moveForce = 365f;          // Amount of force added to move the player left and right
-    public float maxSpeed = 5f;				// The fastest the player can travel in the x axis
+    // Amount of force added to move the player left and right
+    public float moveSpeed = 10f;
+    // Horizontal movement axis
+    private float horizontalAxis;
 
-    /* Components */
-    private new Rigidbody2D rigidbody;      // Used new to disable warning about hiding base member
+    [Header("Vertical movement")]
+    // Amount of force added to make the player jump
+    public float jumpSpeed = 12f;
+    // Position on the player sprite that defines if he is on the ground
+    private Transform groundCheck;
+    // Whether or not the player is on the ground
+    private bool isGrounded = false;
+    // Whether the player should jump
+    private bool shouldJump = false;
+
+    // Used new to disable warning about hiding base member
+    private new Rigidbody2D rigidbody;
 
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        groundCheck = transform.Find("GroundCheck");
     }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
-
+        horizontalAxis = Input.GetAxis("Horizontal");
+        shouldJump = Input.GetButton("Jump");
+        isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
     }
 
     void FixedUpdate()
     {
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        
-        MoveHorizontal(horizontalAxis);
-        
+        MoveHorizontal();
+        MoveVertical();
     }
 
     // Handles horizontal movement
-    private void MoveHorizontal(float horizontalAxis)
+    private void MoveHorizontal()
     {
-        /* Accelerate the speed */
-        if (horizontalAxis * rigidbody.velocity.x < maxSpeed)
-            rigidbody.AddForce(Vector2.right * moveForce * horizontalAxis);
+        if (horizontalAxis * rigidbody.velocity.x < moveSpeed)
+            rigidbody.velocity = new Vector2(moveSpeed * horizontalAxis, rigidbody.velocity.y);
+    }
 
-        /* Limit player maximum speed */
-        if (Mathf.Abs(rigidbody.velocity.x) > maxSpeed)
-            rigidbody.velocity = new Vector2(Mathf.Sign(rigidbody.velocity.x) * maxSpeed, rigidbody.velocity.y);
+    // Handles vertical movement (jumping)
+    private void MoveVertical()
+    {
+        if (shouldJump && isGrounded)
+        {
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpSpeed);
+            isGrounded = false;
+        }
     }
 
 }

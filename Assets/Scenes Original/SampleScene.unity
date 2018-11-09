@@ -164,7 +164,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -233,6 +233,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114451746046311340, guid: 7d8a239d2d7e0ca4982e62eae178c01c,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451746046311340, guid: 7d8a239d2d7e0ca4982e62eae178c01c,
+        type: 2}
+      propertyPath: jumpSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451746046311340, guid: 7d8a239d2d7e0ca4982e62eae178c01c,
+        type: 2}
+      propertyPath: fallMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227219257691394, guid: 7d8a239d2d7e0ca4982e62eae178c01c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.26
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d8a239d2d7e0ca4982e62eae178c01c, type: 2}
   m_IsPrefabAsset: 0
@@ -274,6 +293,20 @@ Prefab:
     - target: {fileID: 4201872227385900, guid: c7bc3a0dd2efc7346ab76bad197ed1df, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201872227385900, guid: c7bc3a0dd2efc7346ab76bad197ed1df, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20639687760055426, guid: c7bc3a0dd2efc7346ab76bad197ed1df,
+        type: 2}
+      propertyPath: m_Depth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20639687760055426, guid: c7bc3a0dd2efc7346ab76bad197ed1df,
+        type: 2}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7bc3a0dd2efc7346ab76bad197ed1df, type: 2}
