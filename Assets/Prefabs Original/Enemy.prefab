@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4517461542760628}
   - component: {fileID: 60505654999852498}
   - component: {fileID: 50410927417916384}
+  - component: {fileID: 114306164125298298}
   m_Layer: 13
   m_Name: Enemy
   m_TagString: Untagged
@@ -66,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816565227512028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.53, y: 1.95, z: -0.2265625}
+  m_LocalPosition: {x: 0.59, y: 2.02, z: -0.2265625}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 4908992246097998}
@@ -147,6 +148,21 @@ PolygonCollider2D:
     - - {x: -0.24137712, y: -0.20852292}
       - {x: 0.00013506413, y: 0.20872355}
       - {x: 0.24172252, y: -0.20821357}
+--- !u!114 &114306164125298298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816565227512028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839401cfdd3dfdc49b42e224ecc1e7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumAngle: 0
+  maximumAngle: 50
+  killImpulse: 500
+  hitImpulse: 500
 --- !u!212 &212258021262284382
 SpriteRenderer:
   m_ObjectHideFlags: 1

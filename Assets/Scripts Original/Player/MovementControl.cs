@@ -5,14 +5,16 @@ using UnityEngine;
 public class MovementControl : MonoBehaviour
 {
     [Header("Horizontal movement")]
-    // Amount of force added to move the player left and right
-    public float moveSpeed = 10f;
+    // Amount of force added to move the player left and right.
+    public float moveForce = 100f;
+    // The fastest the player can travel in the x axis.
+    public float maxSpeed = 5f;
     // Horizontal movement axis
     private float horizontalAxis;
 
     [Header("Vertical movement")]
     // Amount of force added to make the player jump
-    public float jumpSpeed = 12f;
+    public float jumpForce = 500f;
     // Position on the player sprite that defines if he is on the ground
     private Transform groundCheck;
     // Whether or not the player is on the ground
@@ -45,8 +47,11 @@ public class MovementControl : MonoBehaviour
     // Handles horizontal movement
     private void MoveHorizontal()
     {
-        if (horizontalAxis * rigidbody.velocity.x < moveSpeed)
-            rigidbody.velocity = new Vector2(moveSpeed * horizontalAxis, rigidbody.velocity.y);
+        if (horizontalAxis * rigidbody.velocity.x < maxSpeed)
+            rigidbody.AddForce(Vector2.right * horizontalAxis * moveForce);
+
+        if (Mathf.Abs(rigidbody.velocity.x) > maxSpeed)
+            rigidbody.velocity = new Vector2(Mathf.Sign(rigidbody.velocity.x) * maxSpeed, rigidbody.velocity.y);
     }
 
     // Handles vertical movement (jumping)
@@ -54,7 +59,7 @@ public class MovementControl : MonoBehaviour
     {
         if (shouldJump && isGrounded)
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpSpeed);
+            rigidbody.AddForce(Vector2.up * jumpForce);
             isGrounded = false;
         }
     }
