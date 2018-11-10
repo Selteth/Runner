@@ -28,6 +28,7 @@ public class PlayerInfluence : MonoBehaviour
                 gameObjectRigidbody.AddForce(Vector2.up * killImpulse);
 
                 // TODO. Apply damage logic to the player
+                this.GetComponent<EnemyMain>().Damaged();
             }
             else
             {
@@ -35,6 +36,7 @@ public class PlayerInfluence : MonoBehaviour
                 gameObjectRigidbody.AddForce(Vector2.right * directionSign * hitImpulse);
 
                 // TODO. Apply damage logic to the enemy
+                gameObject.GetComponent<PlayerMain>().Damaged();
             }
         }
        
