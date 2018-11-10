@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -139,6 +140,18 @@ AudioListener:
   m_PrefabInternal: {fileID: 1633081643}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57aa01379d7e34884aeb85d875e17226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: -10}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -203,15 +216,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4517461542760628, guid: 4daf76034dcb0c34583742bd20c626c2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.59
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4517461542760628, guid: 4daf76034dcb0c34583742bd20c626c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.02
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4517461542760628, guid: 4daf76034dcb0c34583742bd20c626c2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.2265625
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4517461542760628, guid: 4daf76034dcb0c34583742bd20c626c2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -238,6 +251,11 @@ Prefab:
       propertyPath: hitImpulse
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114306164125298298, guid: 4daf76034dcb0c34583742bd20c626c2,
+        type: 2}
+      propertyPath: minimumAngle
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4daf76034dcb0c34583742bd20c626c2, type: 2}
   m_IsPrefabAsset: 0
@@ -258,7 +276,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4821955195626916, guid: 7d8a239d2d7e0ca4982e62eae178c01c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.11328125
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4821955195626916, guid: 7d8a239d2d7e0ca4982e62eae178c01c, type: 2}
       propertyPath: m_LocalRotation.x
