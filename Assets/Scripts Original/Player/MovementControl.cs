@@ -20,8 +20,8 @@ public class MovementControl : MonoBehaviour
     
     // Instead of creating special GameObject on those sides, we need, we should better use a vector math. 
     // It is becouse our player object will rotate in the jump.
-    public float downVectorLength = 0.27f;
-    
+    private float downVectorLength = 0f;
+    public float downVectorCoef = 0.55f;
     // Whether or not the player is on the ground
     private bool isGrounded = false;
     // Whether the player should jump
@@ -42,7 +42,8 @@ public class MovementControl : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-       // groundCheck = transform.Find("GroundCheck");
+        // groundCheck = transform.Find("GroundCheck");
+        downVectorLength = GetComponent<BoxCollider2D>().size.x * gameObject.transform.localScale.x * downVectorCoef;
     }
     
     void Update()
