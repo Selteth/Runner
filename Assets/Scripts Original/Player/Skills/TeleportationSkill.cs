@@ -30,7 +30,6 @@ public class TeleportationSkill : Skill
     // Creates a player-like target that follows mouse cursor
     protected override void DoActivate()
     {
-        enabled = true;
         target = Instantiate(targetPrefab, Input.mousePosition, Quaternion.identity);
 
         SpriteRenderer targetSpriteRenderer = target.GetComponent<SpriteRenderer>();
@@ -44,6 +43,5 @@ public class TeleportationSkill : Skill
         player.position = target.GetComponent<Transform>().position;
 
         Destroy(target);
-        enabled = false;
     }
 }

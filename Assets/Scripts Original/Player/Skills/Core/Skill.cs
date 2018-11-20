@@ -14,6 +14,7 @@ public abstract class Skill : MonoBehaviour, ISkill {
     // Activates the skill
     public void Activate()
     {
+        enabled = true;
         isActive = true;
         DoActivate();
     }
@@ -34,6 +35,7 @@ public abstract class Skill : MonoBehaviour, ISkill {
         isOnCooldown = true;
         StartCoroutine("WaitForCooldown");
         isActive = false;
+        enabled = false;
     }
 
     // Deactivate implementation

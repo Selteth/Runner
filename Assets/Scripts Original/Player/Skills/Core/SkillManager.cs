@@ -9,10 +9,11 @@ public class SkillManager : MonoBehaviour {
     // Debug only
     void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Alpha1))
             ActivateSkill(0);
-	}
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            ActivateSkill(1);
+    }
     // End debug only
 
     // Adds new skill of specified type

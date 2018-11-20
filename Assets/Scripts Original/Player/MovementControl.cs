@@ -37,8 +37,6 @@ public class MovementControl : MonoBehaviour
     // Used new to disable warning about hiding base member
     private new Rigidbody2D rigidbody;
 
-    
-
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -62,6 +60,12 @@ public class MovementControl : MonoBehaviour
         Rotate();
     }
 
+    public void ChangeSpeed(float multiplier)
+    {
+        moveForce *= multiplier;
+        maxSpeed *= multiplier;
+    }
+
     // Handles horizontal movement
     private void MoveHorizontal()
     {
@@ -82,6 +86,8 @@ public class MovementControl : MonoBehaviour
             
         }
     }
+
+    // Handles rotation
     private void Rotate()
     {
         if (!isGrounded && !isRotating)
