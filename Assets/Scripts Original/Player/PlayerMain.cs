@@ -11,6 +11,10 @@ public class PlayerMain : MonoBehaviour {
     public void Awake()
     {
         curHP = startHP;
+
+        // Debug only
+        GetComponent<SkillManager>().AddSkill<TeleportationSkill>();
+        // End debug only
     }
 
     public void Damaged()

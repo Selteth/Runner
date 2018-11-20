@@ -160,6 +160,8 @@ MonoBehaviour:
   moveForce: 100
   maxSpeed: 5
   jumpForce: 500
+  downVectorCoef: 0.55
+  angleRotatingImpulse: 10
 --- !u!212 &212599038394071264
 SpriteRenderer:
   m_ObjectHideFlags: 1
