@@ -14,18 +14,22 @@ public class MovementControl : MonoBehaviour
 
     [Header("Vertical movement")]
     // Amount of force added to make the player jump
-    public float jumpForce = 500f;
-    // Position on the player sprite that defines if he is on the ground
-    ///private Transform groundCheck;
+    public float jumpSpeed = 0.5f;
+    // Maximum time the player can be rise up when jumping
+    public float maxJumpTime = 2f;
+    // Maximum time counter
+    private float jumpTimeCounter = 0f;
     
     // Instead of creating special GameObject on those sides, we need, we should better use a vector math. 
     // It is becouse our player object will rotate in the jump.
     private float downVectorLength = 0f;
     public float downVectorCoef = 0.55f;
-    // Whether or not the player is on the ground
+    // Whether the player is on the ground
     private bool isGrounded = false;
     // Whether the player should jump
     private bool shouldJump = false;
+    // Whether the player is jumping at the moment
+    private bool isJumping = false;
 
     [Header("Rotate speed")]
     //
@@ -40,15 +44,13 @@ public class MovementControl : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        // groundCheck = transform.Find("GroundCheck");
         downVectorLength = GetComponent<BoxCollider2D>().size.x * gameObject.transform.localScale.x * downVectorCoef;
     }
-    
+
     void Update()
     {
         horizontalAxis = Input.GetAxis("Horizontal");
-        shouldJump = Input.GetButton("Jump");
-        isGrounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y-downVectorLength), 1 << LayerMask.NameToLayer("Ground"));
+        HandleVerticalInput();
         if (isGrounded)
             isRotating = false;
     }
@@ -66,6 +68,42 @@ public class MovementControl : MonoBehaviour
         maxSpeed *= multiplier;
     }
 
+    // Handles player input that belongs to jumps
+    private void HandleVerticalInput()
+    {
+        // If player typed jump button and maybe is holding it...
+        if (Input.GetButton("Jump"))
+        {
+            // ...then he should jump
+            shouldJump = true;
+        }
+        else
+        {
+            shouldJump = false;
+            // If player released jump button in the air then hero should stop rising up.
+            // It helps to avoid double or triple jump
+            isJumping = false;
+        }
+
+        // If player is on the ground...
+        if (Physics2D.Linecast(
+                transform.position,
+                new Vector2(transform.position.x, transform.position.y - downVectorLength),
+                1 << LayerMask.NameToLayer("Ground"))
+                )
+        {
+            // ...then he might jump again
+            isGrounded = true;
+            /* Reset rising up variables */
+            isJumping = false;
+            jumpTimeCounter = 0f;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
+
     // Handles horizontal movement
     private void MoveHorizontal()
     {
@@ -79,11 +117,21 @@ public class MovementControl : MonoBehaviour
     // Handles vertical movement (jumping)
     private void MoveVertical()
     {
+        // If jump button was pressed and player is on the ground...
         if (shouldJump && isGrounded)
         {
-            rigidbody.AddForce(Vector2.up * jumpForce);
+            // ...then start jumping
+            isJumping = true;
             isGrounded = false;
-            
+        }
+
+        // If jump was started, and player is holding jump key, and he can rise up...
+        if (isJumping && shouldJump && jumpTimeCounter < maxJumpTime)
+        {
+            // ...change his vertical speed...
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpSpeed);
+            // ...and decrease time in the air
+            jumpTimeCounter += Time.fixedDeltaTime;
         }
     }
 

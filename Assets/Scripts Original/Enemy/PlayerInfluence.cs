@@ -25,17 +25,15 @@ public class PlayerInfluence : MonoBehaviour
 
             if (angle >= minimumAngle && angle <= maximumAngle && gameObjectRigidbody.velocity.y < 0)
             {
-                gameObjectRigidbody.AddForce(Vector2.up * killImpulse);
-
-                // TODO. Apply damage logic to the player
+                gameObjectRigidbody.velocity = new Vector2(gameObjectRigidbody.velocity.x, 10f);
+                
                 this.GetComponent<EnemyMain>().Damaged();
             }
             else
             {
                 float directionSign = -Mathf.Sign(transform.position.x - gameObject.transform.position.x);
                 gameObjectRigidbody.AddForce(Vector2.right * directionSign * hitImpulse);
-
-                // TODO. Apply damage logic to the enemy
+                
                 gameObject.GetComponent<PlayerMain>().Damaged();
             }
         }
