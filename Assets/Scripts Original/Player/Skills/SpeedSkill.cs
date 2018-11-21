@@ -4,7 +4,7 @@ using System.Collections;
 public class SpeedSkill : Skill
 {
     // Value to multiply force added to the player while moving by
-    private float speedMultiplier = 2f;
+    private readonly float speedMultiplier = 2f;
     // Skill duration
     private float duration;
     // Player movement script
@@ -30,6 +30,7 @@ public class SpeedSkill : Skill
         movement.ChangeSpeed(1.0f / speedMultiplier);
     }
 
+    // Slows player back to his speed after skill is over
     private IEnumerator SlowDown()
     {
         yield return new WaitForSeconds(duration);

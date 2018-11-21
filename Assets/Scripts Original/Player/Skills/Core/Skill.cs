@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-// Represents player skill
+// Represents player skill base behaviour
 public abstract class Skill : MonoBehaviour, ISkill {
     
     // Time during which player cannot activate the skill
@@ -29,11 +29,11 @@ public abstract class Skill : MonoBehaviour, ISkill {
     protected abstract void DoActivate();
 
     // Deactivates the skill
-    protected void Deactivate()
+    public void Deactivate()
     {
         DoDeactivate();
-        isOnCooldown = true;
-        StartCoroutine("WaitForCooldown");
+        Cooldown();
+
         isActive = false;
         enabled = false;
     }
@@ -44,9 +44,10 @@ public abstract class Skill : MonoBehaviour, ISkill {
     // Sets the skill on colldown
     protected void Cooldown()
     {
-
+        isOnCooldown = true;
+        StartCoroutine("WaitForCooldown");
     }
-
+    
     private IEnumerator WaitForCooldown()
     {
         yield return new WaitForSeconds(cooldown);

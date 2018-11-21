@@ -13,6 +13,8 @@ public class SkillManager : MonoBehaviour {
             ActivateSkill(0);
         if (Input.GetKeyDown(KeyCode.Alpha2))
             ActivateSkill(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            ActivateSkill(2);
     }
     // End debug only
 

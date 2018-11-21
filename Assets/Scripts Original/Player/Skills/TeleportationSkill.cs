@@ -39,7 +39,6 @@ public class TeleportationSkill : Skill
     protected override void DoDeactivate()
     {
         player.position = target.GetComponent<Transform>().position;
-
         Destroy(target);
     }
 }

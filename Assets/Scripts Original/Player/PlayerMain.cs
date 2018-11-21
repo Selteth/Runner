@@ -15,6 +15,7 @@ public class PlayerMain : MonoBehaviour {
         // Debug only
         GetComponent<SkillManager>().AddSkill<TeleportationSkill>();
         GetComponent<SkillManager>().AddSkill<SpeedSkill>();
+        GetComponent<SkillManager>().AddSkill<MechanismControlSkill>();
         // End debug only
     }
 

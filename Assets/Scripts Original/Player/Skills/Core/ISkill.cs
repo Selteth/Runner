@@ -2,4 +2,5 @@
 {
     bool CanActivate();
     void Activate();
+    void Deactivate();
 }
