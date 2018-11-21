@@ -10,8 +10,6 @@ public class TeleportationSkill : Skill
     private GameObject target;
     // Target opacity
     private readonly float opacity = 0.2f;
-    // Whether the mouse button was clicked and player should teleport
-    private bool shouldTeleport = false;
 
     void Awake()
     {
