@@ -14,7 +14,7 @@ public class Damage : MonoBehaviour {
     {
         curHP = startHP;
 
-        startPoint = gameObject.transform.position;
+        startPoint = transform.TransformPoint(gameObject.transform.position);
         // Debug only
         //GetComponent<SkillManager>().AddSkill<TeleportationSkill>();
         //GetComponent<SkillManager>().AddSkill<SpeedSkill>();
@@ -41,6 +41,6 @@ public class Damage : MonoBehaviour {
 
     public void Respawn()
     {
-        gameObject.transform.Translate(startPoint);
+        gameObject.transform.Translate(transform.InverseTransformPoint(startPoint));
     }
 }
