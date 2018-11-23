@@ -25,7 +25,7 @@ public class DamageImpact : MonoBehaviour
             {
                 gameObjectRigidbody.velocity = new Vector2(gameObjectRigidbody.velocity.x, killImpulseSpeed);
                 
-                this.GetComponent<EnemyMain>().Damaged();
+                this.GetComponent<Damage>().Damaged();
             }
             else
             {
@@ -38,7 +38,7 @@ public class DamageImpact : MonoBehaviour
                 float directionSign = -Mathf.Sign(transform.position.x - gameObject.transform.position.x);
                 gameObjectRigidbody.AddForce(Vector2.right * directionSign * appliedForce);
 
-                gameObject.GetComponent<PlayerMain>().Damaged();
+                gameObject.GetComponent<Damage>().Damaged();
             }
         }
        

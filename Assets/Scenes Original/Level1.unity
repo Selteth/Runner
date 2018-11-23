@@ -407,7 +407,12 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1816565227512028, guid: 4daf76034dcb0c34583742bd20c626c2, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114678062055769362, guid: 4daf76034dcb0c34583742bd20c626c2, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 4daf76034dcb0c34583742bd20c626c2, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1092690464 stripped
@@ -423,9 +428,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092690464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36d85da76bbc28448841aa9218d0983, type: 3}
+  m_Script: {fileID: 11500000, guid: 6de8df85cc6c69341bd0bfa8dd176111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHP: 1
+  curHP: 0
 --- !u!1001 &1130932596
 Prefab:
   m_ObjectHideFlags: 0
@@ -497,7 +504,12 @@ Prefab:
       propertyPath: angleRotatingImpulse
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1381372322540452, guid: 7d8a239d2d7e0ca4982e62eae178c01c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114179226837406298, guid: 7d8a239d2d7e0ca4982e62eae178c01c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 7d8a239d2d7e0ca4982e62eae178c01c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1130932597 stripped
@@ -513,10 +525,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1130932597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f82041829140804479558fa73ef1591c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6de8df85cc6c69341bd0bfa8dd176111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHP: 3
+  startHP: 1
   curHP: 0
 --- !u!1 &1239345817
 GameObject:
