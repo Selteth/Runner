@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerInfluence : MonoBehaviour
+public class DamageImpact : MonoBehaviour
 {
     // The minimum angle between hit and vertical vector to kill enemy
     public float minimumAngle = 0f;

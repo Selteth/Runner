@@ -163,7 +163,7 @@ MonoBehaviour:
   minimumAngle: 0
   maximumAngle: 50
   killImpulseSpeed: 10
-  hitImpulseForce: 300
+  hitImpulseForce: 100
 --- !u!114 &114678062055769362
 MonoBehaviour:
   m_ObjectHideFlags: 1

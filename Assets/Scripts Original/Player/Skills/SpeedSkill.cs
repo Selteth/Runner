@@ -12,7 +12,7 @@ public class SpeedSkill : Skill
 
     void Awake()
     {
-        cooldown = 5f;
+        cooldown = 1f; // 1 second for debug only
         duration = 15f;
         movement = GetComponent<MovementControl>();
     }

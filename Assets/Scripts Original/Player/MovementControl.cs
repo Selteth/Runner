@@ -68,6 +68,16 @@ public class MovementControl : MonoBehaviour
         maxSpeed *= multiplier;
     }
 
+    public bool IsFalling()
+    {
+        return !isGrounded && rigidbody.velocity.y < 0;
+    }
+
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+
     // Handles player input that belongs to jumps
     private void HandleVerticalInput()
     {
@@ -99,9 +109,7 @@ public class MovementControl : MonoBehaviour
             jumpTimeCounter = 0f;
         }
         else
-        {
             isGrounded = false;
-        }
     }
 
     // Handles horizontal movement

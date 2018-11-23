@@ -4,7 +4,7 @@ public class MechanismControlSkill : Skill
 {
     void Awake()
     {
-        cooldown = 5f;
+        cooldown = 1f; // 1 seconds for debug only
     }
 
     protected override void DoActivate()

@@ -13,7 +13,7 @@ public class TeleportationSkill : Skill
 
     void Awake()
     {
-        cooldown = 5f;
+        cooldown = 1f; // 1 second for debug only
         targetPrefab = Resources.Load<GameObject>("Prefabs/Player/Skills/TeleportationTarget");
         player = GetComponent<Transform>();
         enabled = false;
