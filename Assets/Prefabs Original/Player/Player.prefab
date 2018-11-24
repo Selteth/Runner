@@ -37,9 +37,9 @@ GameObject:
   - component: {fileID: 61424164023340596}
   - component: {fileID: 50114756976953848}
   - component: {fileID: 114451746046311340}
-  - component: {fileID: 114179226837406298}
   - component: {fileID: 114875902020871752}
   - component: {fileID: 114562978469810214}
+  - component: {fileID: 114563562281600222}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -149,19 +149,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4870844, y: 0.48730707}
   m_EdgeRadius: 0
---- !u!114 &114179226837406298
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1381372322540452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f82041829140804479558fa73ef1591c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHP: 100
-  curHP: 0
 --- !u!114 &114451746046311340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,12 +177,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0631d777acaef4dbef1ac77e2975ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDamage: 200
-  damagePerFUpdate: 5
   maxRadius: 4
   radiusPerFUpdate: 0.1
   maxPushForce: 800
   forcePerFUpdate: 20
+  killImpulseSpeed: 10
+--- !u!114 &114563562281600222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1381372322540452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de8df85cc6c69341bd0bfa8dd176111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHP: 3
+  curHP: 1
 --- !u!114 &114875902020871752
 MonoBehaviour:
   m_ObjectHideFlags: 1

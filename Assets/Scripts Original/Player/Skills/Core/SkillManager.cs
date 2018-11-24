@@ -6,6 +6,13 @@ public class SkillManager : MonoBehaviour {
     // Player skills
     private readonly IList<ISkill> skills = new List<ISkill>();
 
+    void Awake()
+    {
+        AddSkill<TeleportationSkill>();
+        AddSkill<SpeedSkill>();
+        AddSkill<MechanismControlSkill>();
+    }
+
     // Debug only
     void Update()
     {

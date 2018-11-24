@@ -6,10 +6,6 @@
 // the more distance is taking into account
 public class DamageAura : MonoBehaviour
 {
-    // Maximum damage applied to enemies
-    public float maxDamage;
-    // Damage step per fixed update
-    public float damagePerFUpdate;
     // Maximum radius of damage
     public float maxRadius;
     // Radius step per fixed update
@@ -18,11 +14,9 @@ public class DamageAura : MonoBehaviour
     public float maxPushForce;
     // Push force per fixed update
     public float forcePerFUpdate;
-
-    // Damage counter.
-    // Is increasing when hero is falling.
-    // Cannot be greater than maxDamage
-    private float damageCounter = 0f;
+    // Impulse speed after killing enemy
+    public float killImpulseSpeed;
+    
     // Radius counter.
     // Is increasing when hero is falling.
     // Cannot be greater than maxRadius
@@ -37,11 +31,14 @@ public class DamageAura : MonoBehaviour
     private MovementControl playerMovement;
     // Whether hero is grounded
     private bool isGrounded = false;
+    // Player rigidbody. Needed for jump after killing enemy
+    private Rigidbody2D playerRigidbody;
 
     void Awake()
     {
         playerTransofrm = GetComponent<Transform>();
         playerMovement = GetComponent<MovementControl>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -55,9 +52,27 @@ public class DamageAura : MonoBehaviour
         ApplyGroundDamage();
     }
 
-    public float GetDamage()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        return damageCounter;
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (HasDamageAura())
+            {
+                collision.gameObject.GetComponent<Damage>().Damaged();
+                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, killImpulseSpeed);
+                Debug.Log("Killed him!");
+            }
+            else
+            {
+                GetComponent<Damage>().Damaged();
+                Debug.Log("I am damaged!");
+            }
+        }
+    }
+
+    private bool HasDamageAura()
+    {
+        return radiusCounter > 0;
     }
 
     private void IncreaseImpact()
@@ -65,15 +80,10 @@ public class DamageAura : MonoBehaviour
         // As long as hero is falling...
         if (playerMovement.IsFalling())
         {
-            /* ...increase his damage aura */
-            damageCounter += damagePerFUpdate;
+            /* ...increase his damage aura power */
             radiusCounter += radiusPerFUpdate;
             pushForceCounter += forcePerFUpdate;
             
-            if (damageCounter > maxDamage)
-            {
-                damageCounter = maxDamage;
-            }
             if (radiusCounter > maxRadius)
             {
                 radiusCounter = maxRadius;
@@ -97,15 +107,13 @@ public class DamageAura : MonoBehaviour
                 foreach (Collider2D enemy in enemies)
                 {
                     float distanceCoefficient = GetDistanceCoefficient(enemy);
-                    float damage = damageCounter * (1 - distanceCoefficient);
                     float pushForce = pushForceCounter * (1 - distanceCoefficient);
 
                     PushEnemy(enemy, pushForce);
                     // TODO. Apply damage to the enemy...
                 }
             }
-
-            damageCounter = 0f;
+            
             radiusCounter = 0f;
             pushForceCounter = 0f;
         }

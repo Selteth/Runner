@@ -37,11 +37,10 @@ GameObject:
   - component: {fileID: 4517461542760628}
   - component: {fileID: 60505654999852498}
   - component: {fileID: 50410927417916384}
-  - component: {fileID: 114306164125298298}
-  - component: {fileID: 114678062055769362}
+  - component: {fileID: 114052199223945378}
   m_Layer: 13
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +148,7 @@ PolygonCollider2D:
     - - {x: -0.24137712, y: -0.20852292}
       - {x: 0.00013506413, y: 0.20872355}
       - {x: 0.24172252, y: -0.20821357}
---- !u!114 &114306164125298298
+--- !u!114 &114052199223945378
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,24 +156,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1816565227512028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 839401cfdd3dfdc49b42e224ecc1e7dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6de8df85cc6c69341bd0bfa8dd176111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumAngle: 0
-  maximumAngle: 50
-  killImpulseSpeed: 10
-  hitImpulseForce: 100
---- !u!114 &114678062055769362
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1816565227512028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36d85da76bbc28448841aa9218d0983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  startHP: 1
+  curHP: 1
 --- !u!212 &212258021262284382
 SpriteRenderer:
   m_ObjectHideFlags: 1
