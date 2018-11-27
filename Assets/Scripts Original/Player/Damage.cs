@@ -42,5 +42,6 @@ public class Damage : MonoBehaviour {
     public void Respawn()
     {
         gameObject.transform.Translate(transform.InverseTransformPoint(startPoint));
+        curHP = startHP;
     }
 }
