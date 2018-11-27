@@ -5,6 +5,8 @@ public class SkillManager : MonoBehaviour {
 
     // Player skills
     private readonly IList<ISkill> skills = new List<ISkill>();
+    // Last skill used by player
+    private ISkill lastSkill;
 
     void Awake()
     {
@@ -22,6 +24,9 @@ public class SkillManager : MonoBehaviour {
             ActivateSkill(1);
         if (Input.GetKeyDown(KeyCode.Alpha3))
             ActivateSkill(2);
+
+        if (Input.GetMouseButtonDown(1) && lastSkill != null)
+            lastSkill.CancelCast();
     }
     // End debug only
 
@@ -39,13 +44,11 @@ public class SkillManager : MonoBehaviour {
     {
         if (index >= 0 && index < skills.Count)
         {
-            ISkill skill = skills[index];
-            if (skill.CanActivate())
-                skill.Activate();
-            // Debug only
-            else
-                Debug.Log("On cooldown");
-            // End debug only
+            if (lastSkill != null)
+                lastSkill.CancelCast();
+
+            lastSkill = skills[index];
+            lastSkill.Activate();
         }
     }
 }

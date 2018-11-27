@@ -1,56 +1,84 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+public enum SkillState
+{
+    Ready, Casting, Activated, Cooldown
+}
+
 // Represents player skill base behaviour
 public abstract class Skill : MonoBehaviour, ISkill {
     
     // Time during which player cannot activate the skill
     protected float cooldown;
-    // Whether the skill is active
-    protected bool isActive = false;
-    // Whether the skill is on cooldown
-    protected bool isOnCooldown = false;
+    // Skill state
+    protected SkillState state;
 
     // Activates the skill
     public void Activate()
     {
-        enabled = true;
-        isActive = true;
-        DoActivate();
-    }
-
-    // Returns true if skill can be activated at the moment
-    public bool CanActivate()
-    {
-        return !isActive && !isOnCooldown;
+        if (state == SkillState.Ready)
+        {
+            enabled = true;
+            DoActivate();
+            
+            Debug.Log("Skill type: " + GetType().ToString() + ". Skill state: " + state.ToString());
+        }
     }
     
-    // Activate implementation
-    protected abstract void DoActivate();
+    // Cancels skill casting
+    public void CancelCast()
+    {
+        if (state == SkillState.Casting)
+        {
+            Interrupt();
+            enabled = false;
+            state = SkillState.Ready;
+
+            Debug.Log("Skill type: " + GetType().ToString() + ". Skill state: " + state.ToString());
+        }
+    }
+
+    // Cancels skill impact on the player
+    public void CancelActivation()
+    {
+        if (state == SkillState.Activated)
+        {
+            Interrupt();
+            Cooldown();
+            enabled = false;
+
+            Debug.Log("Skill type: " + GetType().ToString() + ". Skill state: " + state.ToString());
+        }
+    }
 
     // Deactivates the skill
-    public void Deactivate()
+    protected void Deactivate()
     {
         DoDeactivate();
         Cooldown();
-
-        isActive = false;
         enabled = false;
-    }
 
-    // Deactivate implementation
-    protected abstract void DoDeactivate();
+        Debug.Log("Skill type: " + GetType().ToString() + ". Skill state: " + state.ToString());
+    }
 
     // Sets the skill on colldown
     protected void Cooldown()
     {
-        isOnCooldown = true;
+        state = SkillState.Cooldown;
         StartCoroutine("WaitForCooldown");
     }
-    
+
+    // Activate implementation
+    protected abstract void DoActivate();
+    // Interrupt implementation
+    protected abstract void Interrupt();
+    // Deactivate implementation
+    protected abstract void DoDeactivate();
+
     private IEnumerator WaitForCooldown()
     {
         yield return new WaitForSeconds(cooldown);
-        isOnCooldown = false;
+        state = SkillState.Ready;
     }
 }

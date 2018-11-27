@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿
 
 public class MechanismControlSkill : Skill
 {
@@ -7,21 +7,24 @@ public class MechanismControlSkill : Skill
         cooldown = 1f; // 1 seconds for debug only
     }
 
+    public void ActivateMechanism()
+    {
+        Deactivate();
+    }
+
     protected override void DoActivate()
     {
-        // Debug only
-        Debug.Log("MechanismControlSkill activated");
-        // End debug only
-
+        state = SkillState.Casting;
         // TODO. Change mouse cursor to some special
     }
 
     protected override void DoDeactivate()
     {
-        // Debug only
-        Debug.Log("MechanismControlSkill deactivated");
-        // End debug only
-
         // TODO. Change mouse cursor back to normal
+    }
+
+    protected override void Interrupt()
+    {
+        DoDeactivate();
     }
 }

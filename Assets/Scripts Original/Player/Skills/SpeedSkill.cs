@@ -21,6 +21,7 @@ public class SpeedSkill : Skill
     protected override void DoActivate()
     {
         movement.ChangeSpeed(speedMultiplier);
+        state = SkillState.Activated;
         StartCoroutine("SlowDown");
     }
 
@@ -28,6 +29,11 @@ public class SpeedSkill : Skill
     protected override void DoDeactivate()
     {
         movement.ChangeSpeed(1.0f / speedMultiplier);
+    }
+
+    protected override void Interrupt()
+    {
+        DoDeactivate();
     }
 
     // Slows player back to his speed after skill is over

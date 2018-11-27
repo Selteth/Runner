@@ -33,7 +33,7 @@ public class ActivateOnSkill : MonoBehaviour
             // End release
 
             // Deactivate skill after mechanism activation
-            mechanismControlSkill.Deactivate();
+            mechanismControlSkill.ActivateMechanism();
         }
     }
 

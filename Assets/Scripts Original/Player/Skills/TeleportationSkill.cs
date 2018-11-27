@@ -21,13 +21,14 @@ public class TeleportationSkill : Skill
 
     void Update()
     {
-        if (isActive && Input.GetMouseButtonDown(0))
+        if (state == SkillState.Casting && Input.GetMouseButtonDown(0))
             Deactivate();
     }
 
     // Creates a player-like target that follows mouse cursor
     protected override void DoActivate()
     {
+        state = SkillState.Casting;
         target = Instantiate(targetPrefab, Input.mousePosition, Quaternion.identity);
 
         SpriteRenderer targetSpriteRenderer = target.GetComponent<SpriteRenderer>();
@@ -41,4 +42,10 @@ public class TeleportationSkill : Skill
         player.position = target.GetComponent<Transform>().position;
         Destroy(target);
     }
+
+    protected override void Interrupt()
+    {
+        Destroy(target);
+    }
+
 }
