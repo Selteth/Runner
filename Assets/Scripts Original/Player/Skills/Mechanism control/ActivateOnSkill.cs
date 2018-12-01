@@ -41,6 +41,7 @@ public class ActivateOnSkill : MonoBehaviour
     protected void ActivateMechanism()
     {
         Debug.Log("I am activated!");
+        gameObject.GetComponent<MechanismInterface>().Activate();
     }
     // End debug only
 

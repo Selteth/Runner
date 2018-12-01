@@ -199,6 +199,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 669830008}
+    - target: {fileID: 1108973372494182, guid: b0dc96c136b675a44b7c5484a85c9b67, type: 2}
+      propertyPath: m_Name
+      value: BombPack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0dc96c136b675a44b7c5484a85c9b67, type: 2}
   m_IsPrefabAsset: 0
@@ -610,11 +614,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4546135090192000, guid: ba5791d6ff26f4540bd022fbaacfce8a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.43
+      value: -2.47
       objectReference: {fileID: 0}
     - target: {fileID: 4546135090192000, guid: ba5791d6ff26f4540bd022fbaacfce8a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.79
+      value: -0.72
       objectReference: {fileID: 0}
     - target: {fileID: 4546135090192000, guid: ba5791d6ff26f4540bd022fbaacfce8a, type: 2}
       propertyPath: m_LocalPosition.z
