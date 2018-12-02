@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,10 +24,10 @@ public class Explosion : MonoBehaviour {
             GameObject.Destroy(gameObject);
             return;
         }
-        //Vector3 scale = gameObject.transform.localScale;
-        //scale *= radIncPerSec*Time.deltaTime;
+        
         gameObject.transform.localScale += new Vector3(1, 1, 0) * radIncPerSec * Time.deltaTime;
         curTime += Time.deltaTime;
-        //gameObject.transform.lossyScale.Set(scale.x, scale.y, scale.z);
+       
 	}
+    
 }
