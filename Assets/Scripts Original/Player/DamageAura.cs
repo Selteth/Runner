@@ -8,6 +8,9 @@ public class DamageAura : MonoBehaviour
 {
     // Maximum radius of damage
     public float maxRadius;
+    // The minimum radius that should exist
+    // to create damage aura and affect other objects
+    public float minRadius = 1f;
     // Radius step per fixed update
     public float radiusPerFUpdate;
     // Maximum push force applied to enemies
@@ -63,7 +66,7 @@ public class DamageAura : MonoBehaviour
 
     private bool HasDamageAura()
     {
-        return radiusCounter > 0;
+        return radiusCounter > minRadius;
     }
 
     private void IncreaseImpact()
@@ -90,8 +93,9 @@ public class DamageAura : MonoBehaviour
     {
         if (isGrounded)
         {
-            if (radiusCounter > 0)
+            if (HasDamageAura())
             {
+                Debug.Log(radiusCounter);
                 // Find all enemies in given radius...
                 Collider2D[] enemies = Physics2D.OverlapCircleAll(playerTransofrm.position, radiusCounter, 1 << LayerMask.NameToLayer("Enemy"));
                 // ...and apply to them damage depending on their distance to the player
