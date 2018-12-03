@@ -14,8 +14,6 @@ public class DamageAura : MonoBehaviour
     public float maxPushForce;
     // Push force per fixed update
     public float forcePerFUpdate;
-    // Impulse speed after killing enemy
-    public float killImpulseSpeed;
     
     // Radius counter.
     // Is increasing when hero is falling.
@@ -31,7 +29,7 @@ public class DamageAura : MonoBehaviour
     private MovementControl playerMovement;
     // Whether hero is grounded
     private bool isGrounded = false;
-    // Player rigidbody. Needed for jump after killing enemy
+    // Player rigidbody
     private Rigidbody2D playerRigidbody;
 
     void Awake()
@@ -57,16 +55,9 @@ public class DamageAura : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             if (HasDamageAura())
-            {
-                collision.gameObject.GetComponent<Damage>().Damaged();
-                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, killImpulseSpeed);
-                Debug.Log("Killed him!");
-            }
+                collision.gameObject.GetComponent<Damage>().ApplyDamage(gameObject);
             else
-            {
-                GetComponent<Damage>().Damaged();
-                Debug.Log("I am damaged!");
-            }
+                GetComponent<Damage>().ApplyDamage(collision.gameObject);
         }
     }
 
@@ -77,7 +68,7 @@ public class DamageAura : MonoBehaviour
 
     private void IncreaseImpact()
     {
-        // As long as hero is falling...
+        // As long as player is falling...
         if (playerMovement.IsFalling())
         {
             /* ...increase his damage aura power */
@@ -103,14 +94,13 @@ public class DamageAura : MonoBehaviour
             {
                 // Find all enemies in given radius...
                 Collider2D[] enemies = Physics2D.OverlapCircleAll(playerTransofrm.position, radiusCounter, 1 << LayerMask.NameToLayer("Enemy"));
-                // ...and apply to them damage depending on their distance to the hero
+                // ...and apply to them damage depending on their distance to the player
                 foreach (Collider2D enemy in enemies)
                 {
                     float distanceCoefficient = GetDistanceCoefficient(enemy);
                     float pushForce = pushForceCounter * (1 - distanceCoefficient);
 
                     PushEnemy(enemy, pushForce);
-                    // TODO. Apply damage to the enemy...
                 }
             }
             
@@ -126,10 +116,7 @@ public class DamageAura : MonoBehaviour
         float distanceCoefficient = distance / radiusCounter;
 
         /* I DO NOT WHY BUT SOMETIMES RATIO IS GREATER THAN 1. WTF? */
-        if (distanceCoefficient > 1)
-            return 1;
-        else
-            return distanceCoefficient;
+        return distanceCoefficient > 1 ? 1 : distanceCoefficient;
     }
 
     // Pushes enemy with specified force

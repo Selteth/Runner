@@ -181,7 +181,6 @@ MonoBehaviour:
   radiusPerFUpdate: 0.1
   maxPushForce: 800
   forcePerFUpdate: 20
-  killImpulseSpeed: 10
 --- !u!114 &114563562281600222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,11 +189,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1381372322540452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6de8df85cc6c69341bd0bfa8dd176111, type: 3}
+  m_Script: {fileID: 11500000, guid: e276a34e32bdd114fbd3a94c17a14b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHP: 3
-  curHP: 1
+  lifeCount: 3
+  immortalTime: 3
+  startPoint: {x: -4.82, y: 2.02}
+  damagePushForce: 1000
 --- !u!114 &114875902020871752
 MonoBehaviour:
   m_ObjectHideFlags: 1
