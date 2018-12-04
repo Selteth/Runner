@@ -161,6 +161,16 @@ Prefab:
       propertyPath: m_Name
       value: BombPack
       objectReference: {fileID: 0}
+    - target: {fileID: 212631282135584620, guid: b0dc96c136b675a44b7c5484a85c9b67,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1535931219
+      objectReference: {fileID: 0}
+    - target: {fileID: 212631282135584620, guid: b0dc96c136b675a44b7c5484a85c9b67,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0dc96c136b675a44b7c5484a85c9b67, type: 2}
   m_IsPrefabAsset: 0

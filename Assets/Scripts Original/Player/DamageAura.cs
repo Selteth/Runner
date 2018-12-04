@@ -99,18 +99,25 @@ public class DamageAura : MonoBehaviour
         {
             if (HasDamageAura())
             {
-                ParticleSystem.MainModule main = damageAuraEffect.main;
-                main.startSize = radiusCounter * 3;
-                damageAuraEffect.Emit(1);
-                // Find all enemies in given radius...
+                // Find all enemies in given radius
                 Collider2D[] enemies = Physics2D.OverlapCircleAll(playerTransofrm.position, radiusCounter, 1 << LayerMask.NameToLayer("Enemy"));
-                // ...and apply to them damage depending on their distance to the player
-                foreach (Collider2D enemy in enemies)
+                // If there are any, show damage aura effect...
+                if (enemies.Length != 0)
                 {
-                    float distanceCoefficient = GetDistanceCoefficient(enemy);
-                    float pushForce = pushForceCounter * (1 - distanceCoefficient);
+                    ParticleSystem.MainModule main = damageAuraEffect.main;
+                    main.startSize = radiusCounter * 3;
+                    damageAuraEffect.Emit(1);
 
-                    PushEnemy(enemy, pushForce);
+                    // ...and apply to them damage depending on their distance to the player
+                    foreach (Collider2D enemy in enemies)
+                    {
+                        float distanceCoefficient = GetDistanceCoefficient(enemy);
+                        float pushForce = pushForceCounter * (1 - distanceCoefficient);
+
+                        PushEnemy(enemy, pushForce);
+
+                        
+                    }
                 }
             }
             
