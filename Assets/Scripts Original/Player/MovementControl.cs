@@ -68,6 +68,11 @@ public class MovementControl : MonoBehaviour
         maxSpeed *= multiplier;
     }
 
+    public bool IsRising()
+    {
+        return !isGrounded && rigidbody.velocity.y > 0;
+    }
+
     public bool IsFalling()
     {
         return !isGrounded && rigidbody.velocity.y < 0;

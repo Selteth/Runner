@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRadius: 4
-  minRadius: 1
+  minRadius: 2.25
   radiusPerFUpdate: 0.1
   maxPushForce: 800
   forcePerFUpdate: 20

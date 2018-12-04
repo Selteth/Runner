@@ -62,7 +62,7 @@ public class DamageAura : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            if (HasDamageAura())
+            if (playerMovement.IsFalling())
                 collision.gameObject.GetComponent<Damage>().ApplyDamage(gameObject);
             else
                 GetComponent<Damage>().ApplyDamage(collision.gameObject);
@@ -82,7 +82,7 @@ public class DamageAura : MonoBehaviour
             /* ...increase his damage aura power */
             radiusCounter += radiusPerFUpdate;
             pushForceCounter += forcePerFUpdate;
-            
+
             if (radiusCounter > maxRadius)
             {
                 radiusCounter = maxRadius;
@@ -92,6 +92,8 @@ public class DamageAura : MonoBehaviour
                 pushForceCounter = maxPushForce;
             }
         }
+        else if (playerMovement.IsRising())
+            ResetDamageAura();
     }
 
     private void ApplyGroundDamage()
@@ -137,6 +139,12 @@ public class DamageAura : MonoBehaviour
         // Push direction
         float directionSign = Mathf.Sign(enemy.transform.position.x - playerTransofrm.position.x);
         enemyRigidbody.AddForce(Vector2.right * directionSign * pushForce);
+    }
+
+    private void ResetDamageAura()
+    {
+        radiusCounter = 0;
+        pushForceCounter = 0;
     }
 
 }
