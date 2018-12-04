@@ -6,6 +6,7 @@
 // the more distance is taking into account
 public class DamageAura : MonoBehaviour
 {
+    [Header("Radius")]
     // Maximum radius of damage
     public float maxRadius;
     // The minimum radius that should exist
@@ -14,6 +15,7 @@ public class DamageAura : MonoBehaviour
     // Radius step per fixed update
     public float radiusPerFUpdate;
     // Maximum push force applied to enemies
+    [Header("Force")]
     public float maxPushForce;
     // Push force per fixed update
     public float forcePerFUpdate;
@@ -34,12 +36,15 @@ public class DamageAura : MonoBehaviour
     private bool isGrounded = false;
     // Player rigidbody
     private Rigidbody2D playerRigidbody;
+    // Damage aura ground effect
+    private ParticleSystem damageAuraEffect;
 
     void Awake()
     {
         playerTransofrm = GetComponent<Transform>();
         playerMovement = GetComponent<MovementControl>();
         playerRigidbody = GetComponent<Rigidbody2D>();
+        damageAuraEffect = playerTransofrm.Find("Damage Aura Effect").GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -95,6 +100,9 @@ public class DamageAura : MonoBehaviour
         {
             if (HasDamageAura())
             {
+                ParticleSystem.MainModule main = damageAuraEffect.main;
+                main.startSize = radiusCounter * 3;
+                damageAuraEffect.Emit(1);
                 // Find all enemies in given radius...
                 Collider2D[] enemies = Physics2D.OverlapCircleAll(playerTransofrm.position, radiusCounter, 1 << LayerMask.NameToLayer("Enemy"));
                 // ...and apply to them damage depending on their distance to the player
