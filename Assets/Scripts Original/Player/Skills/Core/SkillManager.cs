@@ -25,7 +25,7 @@ public class SkillManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha3))
             ActivateSkill(2);
 
-        if (Input.GetMouseButtonDown(1) && lastSkill != null)
+        if (Input.GetButtonDown("Fire2") && lastSkill != null)
             lastSkill.CancelCast();
     }
     // End debug only

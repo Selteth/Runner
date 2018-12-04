@@ -21,7 +21,7 @@ public class TeleportationSkill : Skill
 
     void Update()
     {
-        if (state == SkillState.Casting && Input.GetMouseButtonDown(0))
+        if (state == SkillState.Casting && Input.GetButtonDown("Fire1") && !IsOverlapingAnything())
             Deactivate();
     }
 
@@ -41,6 +41,19 @@ public class TeleportationSkill : Skill
     {
         player.position = target.GetComponent<Transform>().position;
         Destroy(target);
+    }
+
+    private bool IsOverlapingAnything()
+    {
+        Transform targetTransform = target.GetComponent<Transform>();
+        Collider2D collider = Physics2D.OverlapBox(
+            targetTransform.position,
+            targetTransform.localScale,
+            0,
+            (1 << LayerMask.NameToLayer("Enemy")) | (1 << LayerMask.NameToLayer("Ground"))
+            );
+
+        return collider != null;
     }
 
     protected override void Interrupt()

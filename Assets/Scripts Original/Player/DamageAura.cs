@@ -34,8 +34,6 @@ public class DamageAura : MonoBehaviour
     private MovementControl playerMovement;
     // Whether hero is grounded
     private bool isGrounded = false;
-    // Player rigidbody
-    private Rigidbody2D playerRigidbody;
     // Damage aura ground effect
     private ParticleSystem damageAuraEffect;
 
@@ -43,7 +41,6 @@ public class DamageAura : MonoBehaviour
     {
         playerTransofrm = GetComponent<Transform>();
         playerMovement = GetComponent<MovementControl>();
-        playerRigidbody = GetComponent<Rigidbody2D>();
         damageAuraEffect = playerTransofrm.Find("Damage Aura Effect").GetComponent<ParticleSystem>();
     }
 
