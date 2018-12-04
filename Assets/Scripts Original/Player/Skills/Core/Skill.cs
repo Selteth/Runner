@@ -14,6 +14,11 @@ public abstract class Skill : MonoBehaviour, ISkill {
     // Skill state
     protected SkillState state;
 
+    protected void Awake()
+    {
+        enabled = false;
+    }
+
     // Activates the skill
     public void Activate()
     {

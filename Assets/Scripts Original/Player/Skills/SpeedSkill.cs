@@ -10,8 +10,9 @@ public class SpeedSkill : Skill
     // Player movement script
     private MovementControl movement;
 
-    void Awake()
+    new void Awake()
     {
+        base.Awake();
         cooldown = 1f; // 1 second for debug only
         duration = 15f;
         movement = GetComponent<MovementControl>();

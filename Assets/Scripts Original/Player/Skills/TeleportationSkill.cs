@@ -11,12 +11,12 @@ public class TeleportationSkill : Skill
     // Target opacity
     private readonly float opacity = 0.2f;
 
-    void Awake()
+    new void Awake()
     {
+        base.Awake();
         cooldown = 1f; // 1 second for debug only
         targetPrefab = Resources.Load<GameObject>("Prefabs/Player/Skills/TeleportationTarget");
         player = GetComponent<Transform>();
-        enabled = false;
     }
 
     void Update()

@@ -23,15 +23,7 @@ public class ActivateOnSkill : MonoBehaviour
         // If the skill is set and active...
         if (mechanismControlSkill != null && mechanismControlSkill.enabled)
         {
-            // Debug only
             ActivateMechanism();
-            // End debug only
-
-            // Release
-            // ...activate mechanism
-            // ActivateMechanism();
-            // End release
-
             // Deactivate skill after mechanism activation
             mechanismControlSkill.ActivateMechanism();
         }

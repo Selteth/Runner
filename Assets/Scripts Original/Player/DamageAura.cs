@@ -95,7 +95,6 @@ public class DamageAura : MonoBehaviour
         {
             if (HasDamageAura())
             {
-                Debug.Log(radiusCounter);
                 // Find all enemies in given radius...
                 Collider2D[] enemies = Physics2D.OverlapCircleAll(playerTransofrm.position, radiusCounter, 1 << LayerMask.NameToLayer("Enemy"));
                 // ...and apply to them damage depending on their distance to the player
