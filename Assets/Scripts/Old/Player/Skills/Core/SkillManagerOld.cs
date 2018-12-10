@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillManager : MonoBehaviour {
+public class SkillManagerOld : MonoBehaviour {
 
     // Player skills
-    private readonly IList<ISkill> skills = new List<ISkill>();
+    private readonly IList<ISkillOld> skills = new List<ISkillOld>();
     // Last skill used by player
-    private ISkill lastSkill;
+    private ISkillOld lastSkill;
 
     void Awake()
     {
         AddSkill<TeleportationSkill>();
-        AddSkill<SpeedSkill>();
+        AddSkill<SpeedSkillOld>();
         AddSkill<MechanismControlSkill>();
     }
 
@@ -34,7 +34,7 @@ public class SkillManager : MonoBehaviour {
     public void AddSkill<SkillType>() where SkillType : Component
     {
         gameObject.AddComponent<SkillType>();
-        skills.Add(GetComponent<SkillType>() as ISkill);
+        skills.Add(GetComponent<SkillType>() as ISkillOld);
 
         // Then show new skill in UI...
     }

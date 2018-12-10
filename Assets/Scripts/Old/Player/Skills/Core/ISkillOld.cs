@@ -1,4 +1,4 @@
-﻿public interface ISkill
+﻿public interface ISkillOld
 {
     void Activate();
     void CancelCast();

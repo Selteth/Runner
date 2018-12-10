@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Horizontal movement speed
     public float runSpeed;
-    // Vertical movement speed
     public float jumpSpeed;
-    // Maximum time the player can be rise up when jumping
     public float maxJumpTime;
-    // Time before starting moving
     public float waitStartTime;
 
     private Rigidbody2D playerRigidbody;
@@ -41,6 +37,17 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         Jump();
+    }
+
+    public void ChangeRunSpeed(float multiplier)
+    {
+        runSpeed *= multiplier;
+        playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
+    }
+
+    public void ChangeJumpTime(float multiplier)
+    {
+        maxJumpTime *= multiplier;
     }
 
     private IEnumerator WaitBeforeStart()
@@ -87,14 +94,12 @@ public class Movement : MonoBehaviour
     {
         if (shouldJump && isGrounded)
         {
-            Debug.Log("Here");
             isJumping = true;
             isGrounded = false;
         }
 
         if (isJumping && shouldJump && jumpTimeCounter < maxJumpTime)
         {
-            Debug.Log("And here");
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpSpeed);
             jumpTimeCounter += Time.fixedDeltaTime;
         }

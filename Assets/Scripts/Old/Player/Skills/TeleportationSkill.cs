@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TeleportationSkill : Skill
+public class TeleportationSkill : SkillOld
 {
     // Player transform
     public Transform player;
@@ -21,14 +21,14 @@ public class TeleportationSkill : Skill
 
     void Update()
     {
-        if (state == SkillState.Casting && Input.GetButtonDown("Fire1") && !IsOverlapingAnything())
+        if (state == SkillStateOld.Casting && Input.GetButtonDown("Fire1") && !IsOverlapingAnything())
             Deactivate();
     }
 
     // Creates a player-like target that follows mouse cursor
     protected override void DoActivate()
     {
-        state = SkillState.Casting;
+        state = SkillStateOld.Casting;
         target = Instantiate(targetPrefab, Input.mousePosition, Quaternion.identity);
 
         SpriteRenderer targetSpriteRenderer = target.GetComponent<SpriteRenderer>();

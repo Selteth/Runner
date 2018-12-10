@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpeedSkill : Skill
+public class SpeedSkillOld : SkillOld
 {
     // Value to multiply force added to the player while moving by
     private readonly float speedMultiplier = 2f;
@@ -22,7 +22,7 @@ public class SpeedSkill : Skill
     protected override void DoActivate()
     {
         movement.ChangeSpeed(speedMultiplier);
-        state = SkillState.Activated;
+        state = SkillStateOld.Activated;
         StartCoroutine("SlowDown");
     }
 

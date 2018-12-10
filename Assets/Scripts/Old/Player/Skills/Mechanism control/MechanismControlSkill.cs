@@ -1,6 +1,6 @@
 ﻿
 
-public class MechanismControlSkill : Skill
+public class MechanismControlSkill : SkillOld
 {
     new void Awake()
     {
@@ -15,7 +15,7 @@ public class MechanismControlSkill : Skill
 
     protected override void DoActivate()
     {
-        state = SkillState.Casting;
+        state = SkillStateOld.Casting;
         // TODO. Change mouse cursor to some special
     }
 

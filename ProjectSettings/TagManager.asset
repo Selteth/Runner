@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - ground
-  - Crate
-  - Enemy
-  - Wall
-  - Obstacle
-  - Bullet
-  - BombPickup
-  - ExplosionFX
-  - HealthBar
-  - Mechanism
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -23,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - Bombs
   - Player
-  - Enemies
-  - Pickups
   - Ground
-  - Enemy
+  - Obstacle
   - Camera
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -51,11 +41,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Default
-    uniqueID: 3363470833
-    locked: 0
   - name: Background
-    uniqueID: 1535931219
+    uniqueID: 3363470833
     locked: 0
   - name: Player
     uniqueID: 2511236001

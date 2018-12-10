@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public enum SkillState
+public enum SkillStateOld
 {
     Ready, Casting, Activated, Cooldown
 }
 
 // Represents player skill base behaviour
-public abstract class Skill : MonoBehaviour, ISkill {
+public abstract class SkillOld : MonoBehaviour, ISkillOld {
     
     // Time during which player cannot activate the skill
     protected float cooldown;
     // Skill state
-    protected SkillState state;
+    protected SkillStateOld state;
 
     protected void Awake()
     {
@@ -22,7 +22,7 @@ public abstract class Skill : MonoBehaviour, ISkill {
     // Activates the skill
     public void Activate()
     {
-        if (state == SkillState.Ready)
+        if (state == SkillStateOld.Ready)
         {
             enabled = true;
             DoActivate();
@@ -34,11 +34,11 @@ public abstract class Skill : MonoBehaviour, ISkill {
     // Cancels skill casting
     public void CancelCast()
     {
-        if (state == SkillState.Casting)
+        if (state == SkillStateOld.Casting)
         {
             Interrupt();
             enabled = false;
-            state = SkillState.Ready;
+            state = SkillStateOld.Ready;
 
             Debug.Log("Skill type: " + GetType().ToString() + ". Skill state: " + state.ToString());
         }
@@ -47,7 +47,7 @@ public abstract class Skill : MonoBehaviour, ISkill {
     // Cancels skill impact on the player
     public void CancelActivation()
     {
-        if (state == SkillState.Activated)
+        if (state == SkillStateOld.Activated)
         {
             Interrupt();
             Cooldown();
@@ -70,7 +70,7 @@ public abstract class Skill : MonoBehaviour, ISkill {
     // Sets the skill on colldown
     protected void Cooldown()
     {
-        state = SkillState.Cooldown;
+        state = SkillStateOld.Cooldown;
         StartCoroutine("WaitForCooldown");
     }
 
@@ -84,6 +84,6 @@ public abstract class Skill : MonoBehaviour, ISkill {
     private IEnumerator WaitForCooldown()
     {
         yield return new WaitForSeconds(cooldown);
-        state = SkillState.Ready;
+        state = SkillStateOld.Ready;
     }
 }
