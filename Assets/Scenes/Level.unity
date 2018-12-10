@@ -312,11 +312,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4380639326422532, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -9.48
       objectReference: {fileID: 0}
     - target: {fileID: 4380639326422532, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 4380639326422532, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -355,7 +355,22 @@ Prefab:
     - target: {fileID: 114017669373191440, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d,
         type: 2}
       propertyPath: maxJumpTime
-      value: 0.2
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114017669373191440, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d,
+        type: 2}
+      propertyPath: waitStartTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50300174728265692, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50300174728265692, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d, type: 2}
@@ -373,7 +388,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4667824579999946, guid: 6289ac6571cc10b4ca56845113a8d7cf, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 4667824579999946, guid: 6289ac6571cc10b4ca56845113a8d7cf, type: 2}
       propertyPath: m_LocalPosition.z

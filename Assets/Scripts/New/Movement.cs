@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     public float jumpSpeed;
     // Maximum time the player can be rise up when jumping
     public float maxJumpTime;
+    // Time before starting moving
+    public float waitStartTime;
 
     private Rigidbody2D playerRigidbody;
     private float distanceToGround;
@@ -20,8 +22,10 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
+        DisableMoving();
         playerRigidbody = GetComponent<Rigidbody2D>();
         distanceToGround = GetComponent<Collider2D>().bounds.extents.y;
+        StartCoroutine("WaitBeforeStart");
     }
 
     private void Start()
@@ -37,6 +41,22 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         Jump();
+    }
+
+    private IEnumerator WaitBeforeStart()
+    {
+        yield return new WaitForSeconds(waitStartTime);
+        EnableMoving();
+    }
+
+    private void DisableMoving()
+    {
+        enabled = false;
+    }
+
+    private void EnableMoving()
+    {
+        enabled = true;
     }
 
     private void HandleVerticalInput()

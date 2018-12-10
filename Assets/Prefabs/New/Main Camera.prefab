@@ -89,10 +89,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xMargin: 1
   yMargin: 1
-  xSmooth: 8
-  ySmooth: 8
-  maxXAndY: {x: 0, y: 0}
-  minXAndY: {x: 0, y: 0}
+  xSmooth: 0
+  ySmooth: 0
+  maxXAndY: {x: 3.4028235e+38, y: 1e+32}
+  minXAndY: {x: -1e+9, y: -1e+32}
 --- !u!224 &224080721538334560
 RectTransform:
   m_ObjectHideFlags: 1
