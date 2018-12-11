@@ -9,8 +9,8 @@ public class Movement : MonoBehaviour
     public float maxJumpTime;
     public float waitStartTime;
 
+    private Transform jumpCheck;
     private Rigidbody2D playerRigidbody;
-    private float distanceToGround;
     private float jumpTimeCounter = 0f;
     private bool isGrounded = false;
     private bool isJumping = false;
@@ -20,15 +20,15 @@ public class Movement : MonoBehaviour
     {
         DisableMoving();
         playerRigidbody = GetComponent<Rigidbody2D>();
-        distanceToGround = GetComponent<Collider2D>().bounds.extents.y;
+        jumpCheck = transform.Find("JumpCheck");
         StartCoroutine("WaitBeforeStart");
     }
 
     private void Start()
     {
-        playerRigidbody.velocity = new Vector2(runSpeed, 0);
+        //playerRigidbody.velocity = new Vector2(runSpeed, 0);
     }
-
+    
     private void Update()
     {
         HandleVerticalInput();
@@ -37,12 +37,13 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         Jump();
+        playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
     }
 
     public void ChangeRunSpeed(float multiplier)
     {
         runSpeed *= multiplier;
-        playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
+        //playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
     }
 
     public void ChangeJumpTime(float multiplier)
@@ -107,7 +108,8 @@ public class Movement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.Raycast(transform.position, Vector2.down, distanceToGround + 0.1f, 1 << LayerMask.NameToLayer("Ground"));
+        return Physics2D.Linecast(transform.position, jumpCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        
     }
 
 }

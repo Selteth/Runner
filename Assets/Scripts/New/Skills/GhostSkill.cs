@@ -7,6 +7,7 @@ public class GhostSkill : Skill
 
     void Awake()
     {
+        DoDeactivate();
         cooldown = 1f;
         duration = 2f;
         playerLayer = gameObject.layer;
