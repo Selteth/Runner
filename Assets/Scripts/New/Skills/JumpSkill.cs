@@ -14,12 +14,12 @@ public class JumpSkill : Skill
     
     protected override void DoActivate()
     {
-        movement.ChangeJumpTime(jumpTimeMultiplier);
+        //movement.ChangeJumpTime(jumpTimeMultiplier);
     }
     
     protected override void DoDeactivate()
     {
-        movement.ChangeJumpTime(1.0f / jumpTimeMultiplier);
+        //movement.ChangeJumpTime(1.0f / jumpTimeMultiplier);
     }
 
 }

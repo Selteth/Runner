@@ -2,11 +2,11 @@
 
 public class LevelCreator : MonoBehaviour
 {
-    public float minWidth;
-    public float maxWidth;
     public BoxCollider2D initialPlatform;
     public BoxCollider2D platformPrefab;
 
+    private float minWidth;
+    private float maxWidth;
     private Transform player;
     private float jumpWidth;
     private float jumpHeight;
@@ -19,13 +19,33 @@ public class LevelCreator : MonoBehaviour
 
     private void Start()
     {
-        InitJumpDistance();
+        //InitJumpDistance();
         InitDistanceToPlayer();
     }
 
     private void Update()
     {
         CreateLevel();
+    }
+
+    public float GetMinPlatformWidth()
+    {
+        return minWidth;
+    }
+
+    public float GetMaxPlatformWidth()
+    {
+        return maxWidth;
+    }
+
+    public void DifficultySwitched(
+        float newMinWidth,
+        float newMaxWidth
+        )
+    {
+        minWidth = newMinWidth;
+        maxWidth = newMaxWidth;
+        InitJumpDistance();
     }
 
     private void InitJumpDistance()
@@ -43,8 +63,7 @@ public class LevelCreator : MonoBehaviour
         jumpHeight = initialHeight + ((2 * a1 + d * (n - 1)) / 2 * n) * Time.fixedDeltaTime - boxCollider.bounds.extents.y;
         jumpWidth = GetJumpStepsCount(initialHeight, playerMovement.jumpSpeed, d) * playerMovement.runSpeed * Time.fixedDeltaTime - boxCollider.bounds.extents.x;
 
-        jumpHeight *= 0.8f;
-        jumpWidth *= 0.9f;
+        jumpHeight *= 0.9f;
     }
 
     private float GetJumpStepsCount(float initialHeight, float initialSpeed, float speedStep)
@@ -86,7 +105,7 @@ public class LevelCreator : MonoBehaviour
 
     private Vector2 GetRandomDistance()
     {
-        float widthCoefficient = Random.Range(0.2f, 0.8f);
+        float widthCoefficient = Random.Range(0.1f, 0.9f);
         float heightCoefficient = 1 - widthCoefficient;
         return new Vector2(
             jumpWidth * widthCoefficient,

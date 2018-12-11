@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356f45bdaf97c664d96da711ec21fffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 7
+  runSpeed: 10
   jumpSpeed: 10
   maxJumpTime: 0.1
   waitStartTime: 1
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7059c77284f8b74283f821829ad29d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFallTime: 3
+  maxFallTime: 1
 --- !u!114 &114723922133426962
 MonoBehaviour:
   m_ObjectHideFlags: 1
