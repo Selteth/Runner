@@ -160,23 +160,6 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 61158185296939782, guid: 6289ac6571cc10b4ca56845113a8d7cf,
     type: 2}
   m_PrefabInternal: {fileID: 1937695187}
---- !u!1 &598605741 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1994525369215158, guid: 420195d027681da4b84f2eaeef1dad97,
-    type: 2}
-  m_PrefabInternal: {fileID: 1095495199}
---- !u!114 &598605745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 598605741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa77ec9b21bd25b4fb886d298f4d34dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followed: {fileID: 1454083937}
 --- !u!1001 &1095495199
 Prefab:
   m_ObjectHideFlags: 0
@@ -274,28 +257,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114248357671961406, guid: 420195d027681da4b84f2eaeef1dad97,
+    - target: {fileID: 114514041416134864, guid: 420195d027681da4b84f2eaeef1dad97,
         type: 2}
-      propertyPath: maxXAndY.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114248357671961406, guid: 420195d027681da4b84f2eaeef1dad97,
-        type: 2}
-      propertyPath: maxXAndY.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114248357671961406, guid: 420195d027681da4b84f2eaeef1dad97,
-        type: 2}
-      propertyPath: minXAndY.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114248357671961406, guid: 420195d027681da4b84f2eaeef1dad97,
-        type: 2}
-      propertyPath: minXAndY.y
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114248357671961406, guid: 420195d027681da4b84f2eaeef1dad97, type: 2}
+      propertyPath: followed
+      value: 
+      objectReference: {fileID: 1454083937}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 420195d027681da4b84f2eaeef1dad97, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1128248374

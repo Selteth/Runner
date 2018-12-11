@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -26,7 +25,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        //playerRigidbody.velocity = new Vector2(runSpeed, 0);
+
     }
     
     private void Update()
@@ -43,7 +42,6 @@ public class Movement : MonoBehaviour
     public void ChangeRunSpeed(float multiplier)
     {
         runSpeed *= multiplier;
-        //playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
     }
 
     public void ChangeJumpTime(float multiplier)
