@@ -61,10 +61,8 @@ public class LevelCreator : MonoBehaviour
 
     private void InitDistanceToPlayer()
     {
-        Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        float height = 2f * camera.orthographicSize;
-        float width = height * camera.aspect;
-        distanceToPlayer = width * 1.5f;
+        CameraInfo cameraInfo = GameObject.Find("Main Camera").GetComponent<CameraInfo>();
+        distanceToPlayer = cameraInfo.GetSize().x * 1.5f;
     }
 
     private void CreateLevel()

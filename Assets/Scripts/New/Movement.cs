@@ -39,6 +39,11 @@ public class Movement : MonoBehaviour
         playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
     }
 
+    public bool IsFalling()
+    {
+        return !isGrounded && playerRigidbody.velocity.y < 0;
+    }
+
     public void ChangeRunSpeed(float multiplier)
     {
         runSpeed *= multiplier;
