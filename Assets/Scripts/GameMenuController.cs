@@ -20,6 +20,10 @@ public class GameMenuController : MonoBehaviour {
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("SpriteLevel");
+    }
+    public void ExitGame()
+    {
+        
     }
 }

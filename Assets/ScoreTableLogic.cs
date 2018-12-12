@@ -20,12 +20,16 @@ public class ScoreTableLogic : MonoBehaviour {
     {
         ScoreTable.Add(res);
         isSaved = false;
+
+
     }
 
     public System.Collections.ObjectModel.ReadOnlyCollection<int>GetResults()
     {
         ScoreTable.Sort();
         ScoreTable.Reverse();
+        while (ScoreTable.Count > 10)
+            ScoreTable.RemoveAt(10);
         return ScoreTable.AsReadOnly();
     }
 
@@ -35,6 +39,7 @@ public class ScoreTableLogic : MonoBehaviour {
         FileStream fs = File.Open(Application.persistentDataPath + DATA_FILE, FileMode.OpenOrCreate);
         ScoreTable.Sort();
         ScoreTable.Reverse();
+        //Debug.Log("saving data. list is :" + ScoreTable + "("+ScoreTable.Count+")");
         bf.Serialize(fs, ScoreTable);
         fs.Close();
         isSaved = true;
@@ -47,7 +52,7 @@ public class ScoreTableLogic : MonoBehaviour {
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = File.Open(Application.persistentDataPath + DATA_FILE, FileMode.Open);
-            //Debug.Log("PERSISTENT DATA DIRECTORY IS: "+Application.persistentDataPath);
+            Debug.Log("Data loading ");
             ScoreTable = (List<int>)bf.Deserialize(fs);
             fs.Close();
         }

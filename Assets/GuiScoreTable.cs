@@ -20,15 +20,19 @@ public class GuiScoreTable : MonoBehaviour {
             if (stl != null)
                 break;
         }
-
-
-        foreach (int score in stl.GetResults())
-            text += "("+score+")" + "\n";
-        textComp.text = text;//.GetEnumerator().Current;
+        
+        //.GetEnumerator().Current;
     }
 
     // Update is called once per frame
     void Update () {
-		
-	}
+
+        int maxScore = 0;
+        foreach (int res in stl.GetResults())
+        {
+            maxScore = res;
+            break;
+        }
+        textComp.text = text + maxScore;
+    }
 }
