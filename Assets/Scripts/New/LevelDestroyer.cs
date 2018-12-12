@@ -6,10 +6,10 @@ public class LevelDestroyer : MonoBehaviour
 
     private void Start()
     {
-        LevelCreator levelCreator = GameObject.Find("LevelCreator").GetComponent<LevelCreator>();
+        Difficulty difficulty = GameObject.Find("Difficulty").GetComponent<Difficulty>();
         CameraInfo cameraInfo = GetComponentInParent<CameraInfo>();
         
-        distanceToCamera = cameraInfo.GetSize().x * 1.5f + levelCreator.maxWidth;
+        distanceToCamera = cameraInfo.GetSize().x * 1.5f + difficulty.GetMaxPlatformWidthAll();
 
         transform.position = new Vector2(
             transform.parent.position.x - distanceToCamera,

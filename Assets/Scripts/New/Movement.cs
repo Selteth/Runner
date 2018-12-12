@@ -7,9 +7,10 @@ public class Movement : MonoBehaviour
     public float jumpSpeed;
     public float maxJumpTime;
     public float waitStartTime;
-
+    
     private Transform jumpCheck;
     private Rigidbody2D playerRigidbody;
+    private Animator animator;
     private float jumpTimeCounter = 0f;
     private bool isGrounded = false;
     private bool isJumping = false;
@@ -19,18 +20,21 @@ public class Movement : MonoBehaviour
     {
         DisableMoving();
         playerRigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         jumpCheck = transform.Find("JumpCheck");
         StartCoroutine("WaitBeforeStart");
     }
 
     private void Start()
     {
-
+        runSpeed = GameObject.Find("Difficulty").GetComponent<Difficulty>().GetSpeed();
     }
     
     private void Update()
     {
         HandleVerticalInput();
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("runSpeed", runSpeed);
     }
 
     private void FixedUpdate()
@@ -39,19 +43,14 @@ public class Movement : MonoBehaviour
         playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
     }
 
+    public void DifficultySwitched(float newSpeed)
+    {
+        runSpeed = newSpeed;
+    }
+
     public bool IsFalling()
     {
         return !isGrounded && playerRigidbody.velocity.y < 0;
-    }
-
-    public void ChangeRunSpeed(float multiplier)
-    {
-        runSpeed *= multiplier;
-    }
-
-    public void ChangeJumpTime(float multiplier)
-    {
-        maxJumpTime *= multiplier;
     }
 
     private IEnumerator WaitBeforeStart()
@@ -112,7 +111,6 @@ public class Movement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.Linecast(transform.position, jumpCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        
     }
 
 }

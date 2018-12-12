@@ -51,8 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b694ef39c204345b09454624335cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minWidth: 0.7
-  maxWidth: 4
   initialPlatform: {fileID: 0}
   platformPrefab: {fileID: 61943734241438050, guid: 2bcc9c5485f1af84f97dfc087dd0ea59,
     type: 2}

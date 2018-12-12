@@ -14,12 +14,12 @@ public class SpeedSkill : Skill
     
     protected override void DoActivate()
     {
-        movement.ChangeRunSpeed(speedMultiplier);
+        //movement.ChangeRunSpeed(speedMultiplier);
     }
     
     protected override void DoDeactivate()
     {
-        movement.ChangeRunSpeed(1.0f / speedMultiplier);
+        //movement.ChangeRunSpeed(1.0f / speedMultiplier);
     }
 
 }
