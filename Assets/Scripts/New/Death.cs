@@ -30,7 +30,7 @@ public class Death : MonoBehaviour
     private void Die()
     {
         //Debug.Log("Dead. Load new scene");
-        SceneManager.LoadScene("GameMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("LooseScene", LoadSceneMode.Single);
     }
 
 }

@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ScoreCounter : MonoBehaviour {
 
     private ScoreTableLogic scl;
+    //private VariableContainer vc;
 
     public int score=0;
     public float LengthToScorePoint = 0.1f;
@@ -17,8 +17,12 @@ public class ScoreCounter : MonoBehaviour {
 
         foreach(GameObject go in gameObject.scene.GetRootGameObjects())
         {
-            scl = go.GetComponent<ScoreTableLogic>();
-            if (scl != null)
+            //if (scl==null)
+                scl = go.GetComponent<ScoreTableLogic>();
+            //if (vc == null)
+           //     vc = go.GetComponent<VariableContainer>();
+
+            if (scl != null )//&& vc != null)
                 break;
         }
 	}
@@ -39,6 +43,7 @@ public class ScoreCounter : MonoBehaviour {
     void OnDestroy()
     {
         scl.Add(score);
-        Debug.Log("SCORE("+score+") added");
+        //Debug.Log("SCORE("+score+") added");
+        VariableContainer.LastScore = score;
     }
 }

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HowToPlayRunner.unity
     guid: a3951c1ed8d2a204ca1b30faed221604
+  - enabled: 1
+    path: Assets/Scenes/LooseScene.unity
+    guid: 4b8e48e2061422642a3c197731b858ff
   m_configObjects: {}
