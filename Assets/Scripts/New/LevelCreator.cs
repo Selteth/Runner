@@ -3,7 +3,7 @@
 public class LevelCreator : MonoBehaviour
 {
     public BoxCollider2D initialPlatform;
-    public BoxCollider2D platformPrefab;
+    public BoxCollider2D[] platformPrefabs;
 
     private float minWidth;
     private float maxWidth;
@@ -89,6 +89,7 @@ public class LevelCreator : MonoBehaviour
         Vector2 platformEnd = initialPlatform.bounds.center + initialPlatform.bounds.extents;
         if (platformEnd.x - player.position.x <= distanceToPlayer)
         {
+            BoxCollider2D platformPrefab = GetRandomPrefab();
             Vector2 distance = GetRandomDistance();
             float width = Random.Range(minWidth, maxWidth);
             Vector2 platformPosition = platformEnd + distance;
@@ -111,6 +112,11 @@ public class LevelCreator : MonoBehaviour
             jumpWidth * widthCoefficient,
             jumpHeight * heightCoefficient * (Random.Range(0, 2) == 0 ? 1 : -1) - initialPlatform.size.y / 2f
             );
+    }
+
+    private BoxCollider2D GetRandomPrefab()
+    {
+        return platformPrefabs[Random.Range(0, platformPrefabs.Length)];
     }
 
 }

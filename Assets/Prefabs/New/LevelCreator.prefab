@@ -52,5 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPlatform: {fileID: 0}
-  platformPrefab: {fileID: 61943734241438050, guid: 2bcc9c5485f1af84f97dfc087dd0ea59,
-    type: 2}
+  platformPrefabs:
+  - {fileID: 61734771288509524, guid: 0e0730c5c33b7064cafcc2f4cd062ed4, type: 2}
+  - {fileID: 61746947816599524, guid: ec03b9f0b3c4a904493986af22b644f0, type: 2}
+  - {fileID: 61825822862667608, guid: 1f523314f300f7343b860dd3a3739aad, type: 2}
