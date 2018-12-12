@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Death : MonoBehaviour
 {
@@ -28,7 +29,8 @@ public class Death : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Dead. Load new scene");
+        //Debug.Log("Dead. Load new scene");
+        SceneManager.LoadScene("GameMenu", LoadSceneMode.Single);
     }
 
 }
