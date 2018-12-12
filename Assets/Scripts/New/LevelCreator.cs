@@ -61,7 +61,7 @@ public class LevelCreator : MonoBehaviour
         float initialHeight = playerMovement.jumpSpeed * playerMovement.maxJumpTime;
 
         jumpHeight = initialHeight + ((2 * a1 + d * (n - 1)) / 2 * n) * Time.fixedDeltaTime - boxCollider.bounds.extents.y;
-        jumpWidth = GetJumpStepsCount(initialHeight, playerMovement.jumpSpeed, d) * playerMovement.runSpeed * Time.fixedDeltaTime - boxCollider.bounds.extents.x;
+        jumpWidth = GetJumpStepsCount(initialHeight, playerMovement.jumpSpeed, d) * playerMovement.runSpeed * Time.fixedDeltaTime + boxCollider.bounds.extents.x;
 
         jumpHeight *= 0.9f;
     }

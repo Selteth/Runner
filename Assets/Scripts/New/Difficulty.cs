@@ -76,7 +76,7 @@ public class Difficulty : MonoBehaviour
         AddDifficulty(7f, 4f, 7f);
         AddDifficulty(8f, 3f, 7f);
         AddDifficulty(9f, 3f, 6f);
-        AddDifficulty(10f, 3f, 5f);
+        AddDifficulty(10f, 2.5f, 5f);
     }
 
     private void AddDifficulty(
@@ -100,6 +100,5 @@ public class Difficulty : MonoBehaviour
             difficulties[difficultyIndex].minPlatformWidth,
             difficulties[difficultyIndex].maxPlatformWidth
             );
-        Debug.Log("Switched!");
     }
 }

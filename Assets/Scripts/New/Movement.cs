@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     
     private Transform jumpCheck;
     private Rigidbody2D playerRigidbody;
+    private Animator animator;
     private float jumpTimeCounter = 0f;
     private bool isGrounded = false;
     private bool isJumping = false;
@@ -19,6 +20,7 @@ public class Movement : MonoBehaviour
     {
         DisableMoving();
         playerRigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         jumpCheck = transform.Find("JumpCheck");
         StartCoroutine("WaitBeforeStart");
     }
@@ -31,6 +33,8 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         HandleVerticalInput();
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("runSpeed", runSpeed);
     }
 
     private void FixedUpdate()
