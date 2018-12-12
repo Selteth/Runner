@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class GameMenuController : MonoBehaviour {
 
-    public Button PlayGameButton, ExitButton;
+    public Button PlayGameButton, ExitButton, HowToPlayButton;
 
 	// Use this for initialization
 	void Start () {
         PlayGameButton.onClick.AddListener(PlayGame);
+        HowToPlayButton.onClick.AddListener(HowToPlay);
 	}
 	
 	// Update is called once per frame
@@ -25,5 +26,9 @@ public class GameMenuController : MonoBehaviour {
     public void ExitGame()
     {
         
+    }
+    public void HowToPlay()
+    {
+        SceneManager.LoadScene("HowToPlayRunner");
     }
 }
