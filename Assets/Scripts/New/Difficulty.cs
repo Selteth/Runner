@@ -13,14 +13,14 @@ public class Difficulty : MonoBehaviour
     public float switchDifficultyTime;
     
     private List<DifficultyInfo> difficulties = new List<DifficultyInfo>();
-    private LevelCreator levelCreator;
+    //private LevelCreator levelCreator;
     private Movement playerMovement;
     private float difficultyTimeCounter = 0f;
     private int difficultyIndex = -1;
 
     private void Awake()
     {
-        levelCreator = GameObject.Find("LevelCreator").GetComponent<LevelCreator>();
+        //levelCreator = GameObject.Find("LevelCreator").GetComponent<LevelCreator>();
         playerMovement = GameObject.Find("Player").GetComponent<Movement>();
         InitDifficulties();
     }
@@ -95,10 +95,10 @@ public class Difficulty : MonoBehaviour
     private void SwitchDifficulty()
     {
         difficultyIndex++;
-        playerMovement.DifficultySwitched(difficulties[difficultyIndex].playerSpeed);
-        levelCreator.DifficultySwitched(
-            difficulties[difficultyIndex].minPlatformWidth,
-            difficulties[difficultyIndex].maxPlatformWidth
-            );
+        //playerMovement.DifficultySwitched(difficulties[difficultyIndex].playerSpeed);
+        //levelCreator.DifficultySwitched(
+        //    difficulties[difficultyIndex].minPlatformWidth,
+        //    difficulties[difficultyIndex].maxPlatformWidth
+        //    );
     }
 }

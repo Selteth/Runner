@@ -24,11 +24,6 @@ public class Movement : MonoBehaviour
         jumpCheck = transform.Find("JumpCheck");
         StartCoroutine("WaitBeforeStart");
     }
-
-    private void Start()
-    {
-        runSpeed = GameObject.Find("Difficulty").GetComponent<Difficulty>().GetSpeed();
-    }
     
     private void Update()
     {
@@ -41,11 +36,6 @@ public class Movement : MonoBehaviour
     {
         Jump();
         playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
-    }
-
-    public void DifficultySwitched(float newSpeed)
-    {
-        runSpeed = newSpeed;
     }
 
     public bool IsFalling()
@@ -101,7 +91,7 @@ public class Movement : MonoBehaviour
             isGrounded = false;
         }
 
-        if (isJumping && shouldJump && jumpTimeCounter < maxJumpTime)
+        if (isJumping && shouldJump && jumpTimeCounter <= maxJumpTime)
         {
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpSpeed);
             jumpTimeCounter += Time.fixedDeltaTime;
