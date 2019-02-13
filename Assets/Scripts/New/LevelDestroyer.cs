@@ -4,7 +4,7 @@ public class LevelDestroyer : MonoBehaviour
 {
     private float distanceToCamera;
 
-    private void Start()
+    void Start()
     {
         //Difficulty difficulty = GameObject.Find("Difficulty").GetComponent<Difficulty>();
         CameraInfo cameraInfo = GetComponentInParent<CameraInfo>();
@@ -17,7 +17,7 @@ public class LevelDestroyer : MonoBehaviour
             );
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         Destroy(collider.gameObject);
     }

@@ -4,7 +4,7 @@ public class CameraInfo : MonoBehaviour
 {
     private Camera mainCamera;
 
-    private void Awake()
+    void Awake()
     {
         mainCamera = GetComponent<Camera>();
     }

@@ -8,12 +8,12 @@ public class Death : MonoBehaviour
     private float fallCounter = 0f;
     private Movement movement;
 
-    private void Awake()
+    void Awake()
     {
         movement = GetComponent<Movement>();
     }
 
-    private void Update()
+    void Update()
     {
         if (movement.IsFalling())
         {

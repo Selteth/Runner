@@ -13,7 +13,7 @@ public class LevelCreationManager : MonoBehaviour
     /* Sprite renderer of platform prefab */
     private SpriteRenderer prefabSpriteRenderer;
 
-    private void Awake()
+    void Awake()
     {
         GameObject player = GameObject.Find("Player");
         levelCreator = new StandardLevelCreator(player.GetComponent<Movement>());
@@ -21,13 +21,13 @@ public class LevelCreationManager : MonoBehaviour
         prefabSpriteRenderer = platformPrefab.GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void Start()
+    void Start()
     {
         distanceToLastPlatform = GameObject.Find("Main Camera")
                .GetComponent<CameraInfo>().GetSize().x * 1.5f;
     }
     
-    private void Update()
+    void Update()
     {
         while (lastPlatform.transform.position.x <=
             playerTransform.position.x + distanceToLastPlatform)

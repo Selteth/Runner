@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     private bool isJumping = false;
     private bool shouldJump = false;
 
-    private void Awake()
+    void Awake()
     {
         DisableMoving();
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -25,14 +25,14 @@ public class Movement : MonoBehaviour
         StartCoroutine("WaitBeforeStart");
     }
     
-    private void Update()
+    void Update()
     {
         HandleVerticalInput();
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("runSpeed", runSpeed);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         Jump();
         playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);

@@ -4,7 +4,7 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform followed;
 
-    private void Update()
+    void Update()
     {
         gameObject.transform.position = new Vector3(
             followed.position.x,

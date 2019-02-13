@@ -18,14 +18,14 @@ public class Difficulty : MonoBehaviour
     private float difficultyTimeCounter = 0f;
     private int difficultyIndex = -1;
 
-    private void Awake()
+    void Awake()
     {
         //levelCreator = GameObject.Find("LevelCreator").GetComponent<LevelCreator>();
         playerMovement = GameObject.Find("Player").GetComponent<Movement>();
         InitDifficulties();
     }
 
-    private void Update()
+    void Update()
     {
         difficultyTimeCounter += Time.deltaTime;
         if (difficultyTimeCounter >= switchDifficultyTime
@@ -36,7 +36,7 @@ public class Difficulty : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         SwitchDifficulty();
     }

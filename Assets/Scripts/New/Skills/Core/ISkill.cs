@@ -1,5 +1,4 @@
-﻿public interface ISkill
+﻿interface ISkill
 {
     void Activate();
-    void Deactivate();
 }

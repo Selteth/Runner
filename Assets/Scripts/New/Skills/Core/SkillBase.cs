@@ -1,0 +1,19 @@
+﻿using UnityEngine;
+
+public abstract class SkillBase : MonoBehaviour, ISkill
+{
+    void Update()
+    {
+        if (DoDeactivate())
+            enabled = false;
+    }
+
+    public void Activate()
+    {
+        DoActivate();
+        enabled = true;
+    }
+
+    protected abstract void DoActivate();
+    protected abstract bool DoDeactivate();
+}
