@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class GhostSkill : SkillBase
 {
-    private readonly float duration = 3.0f;
-    private float durationCounter = 0f;
-    private bool isInsideObstacle = false;
+    // Count of seconds that player can be ghost
+    private readonly float duration = 2f;
+    // Whether the time of using the ability has passed
+    private bool timedOut = false;
     private int playerLayer;
     private int obstacleLayer;
 
@@ -16,38 +18,30 @@ public class GhostSkill : SkillBase
 
     void Start()
     {
-        
+        DoActivate();
     }
-
-    void Update()
-    {
-        durationCounter += Time.deltaTime;
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == obstacleLayer)
-            isInsideObstacle = true;
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == obstacleLayer)
-            isInsideObstacle = false;
-    }
-
+    
+    // Disables collisions between player and obstacles
     protected override void DoActivate()
     {
         Physics2D.IgnoreLayerCollision(playerLayer, obstacleLayer, true);
+        StartCoroutine(TimeOver());
     }
 
+    // Enables collisions back between player and obstacles
     protected override bool DoDeactivate()
     {
-        if (isInsideObstacle || durationCounter < duration)
+        if (!timedOut)
             return false;
-
+        
         Physics2D.IgnoreLayerCollision(playerLayer, obstacleLayer, false);
-        durationCounter = 0f;
         return true;
+    }
+
+    // Disables ability after N seconds
+    private IEnumerator TimeOver()
+    {
+        yield return new WaitForSeconds(duration);
+        timedOut = true;
     }
 }

@@ -38,6 +38,11 @@ public class Movement : MonoBehaviour
         playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
     }
 
+    public bool IsGrounded()
+    {
+        return Physics2D.Linecast(transform.position, jumpCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+    }
+
     public bool IsFalling()
     {
         return !isGrounded && playerRigidbody.velocity.y < 0;
@@ -96,11 +101,6 @@ public class Movement : MonoBehaviour
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpSpeed);
             jumpTimeCounter += Time.fixedDeltaTime;
         }
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics2D.Linecast(transform.position, jumpCheck.position, 1 << LayerMask.NameToLayer("Ground"));
     }
 
 }

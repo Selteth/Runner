@@ -2,7 +2,7 @@
 
 public abstract class SkillBase : MonoBehaviour, ISkill
 {
-    void Update()
+    void FixedUpdate()
     {
         if (DoDeactivate())
             enabled = false;
