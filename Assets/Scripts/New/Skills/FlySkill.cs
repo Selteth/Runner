@@ -18,7 +18,7 @@ public class FlySkill : SkillBase
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (!movement.IsGrounded() && Input.GetButtonDown("Jump")
             && !abilityUsed)
@@ -36,16 +36,9 @@ public class FlySkill : SkillBase
             else
                 StopFlying();
         }
-    }
 
-    protected override void DoActivate()
-    {
-        // Empty
-    }
-
-    protected override bool DoDeactivate()
-    {
-        return abilityUsed;
+        if (abilityUsed)
+            Deactivate();
     }
 
     // Freezes Y-coordinate of the player

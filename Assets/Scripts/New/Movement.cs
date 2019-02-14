@@ -24,13 +24,46 @@ public class Movement : MonoBehaviour
         jumpCheck = transform.Find("JumpCheck");
         StartCoroutine("WaitBeforeStart");
     }
-    
+
+    private bool testVar = false;
+
     void Update()
     {
         HandleVerticalInput();
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("runSpeed", runSpeed);
+
+        {
+            if (!testVar)
+            {
+                Debug.Log("Debug block and variable in Movement.Update()");
+                Debug.Log("Press 1 for GhostSkill");
+                Debug.Log("Press 2 for FlySkill");
+                Debug.Log("Press 3 for HighJumpSkill");
+
+                Debug.LogError("Fix bug with platform generation when using HighJumpSkill");
+
+                testVar = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                ISkill skill = gameObject.AddComponent<GhostSkill>();
+                skill.Activate();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                ISkill skill = gameObject.AddComponent<FlySkill>();
+                skill.Activate();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                ISkill skill = gameObject.AddComponent<HighJumpSkill>();
+                skill.Activate();
+            }
+        }
     }
+
 
     void FixedUpdate()
     {

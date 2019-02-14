@@ -18,30 +18,15 @@ public class GhostSkill : SkillBase
 
     void Start()
     {
-        DoActivate();
-    }
-    
-    // Disables collisions between player and obstacles
-    protected override void DoActivate()
-    {
         Physics2D.IgnoreLayerCollision(playerLayer, obstacleLayer, true);
         StartCoroutine(TimeOver());
-    }
-
-    // Enables collisions back between player and obstacles
-    protected override bool DoDeactivate()
-    {
-        if (!timedOut)
-            return false;
-        
-        Physics2D.IgnoreLayerCollision(playerLayer, obstacleLayer, false);
-        return true;
     }
 
     // Disables ability after N seconds
     private IEnumerator TimeOver()
     {
         yield return new WaitForSeconds(duration);
-        timedOut = true;
+        Physics2D.IgnoreLayerCollision(playerLayer, obstacleLayer, false);
+        Deactivate();
     }
 }

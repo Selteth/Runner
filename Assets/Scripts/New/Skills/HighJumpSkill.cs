@@ -4,7 +4,7 @@ public class HighJumpSkill : SkillBase
 {
     private enum JumpState
     {
-        None, Ready, Active, Used
+        None, Ready, Active
     }
 
     private readonly float jumpMultiplier = 2.0f;
@@ -28,17 +28,8 @@ public class HighJumpSkill : SkillBase
         else if (state == JumpState.Active && playerMovement.IsGrounded())
         {
             playerMovement.jumpSpeed /= jumpMultiplier;
-            state = JumpState.Used;
+            Deactivate();
         }
     }
-
-    protected override void DoActivate()
-    {
-        // Empty
-    }
-
-    protected override bool DoDeactivate()
-    {
-        return state == JumpState.Used;
-    }
+    
 }
