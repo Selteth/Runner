@@ -10,5 +10,6 @@ public abstract class SkillBase : MonoBehaviour, ISkill
     protected void Deactivate()
     {
         enabled = false;
+        Destroy(this);
     }
 }
