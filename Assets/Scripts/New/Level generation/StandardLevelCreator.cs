@@ -3,11 +3,11 @@ using UnityEngine;
 
 class StandardLevelCreator : ILevelCreator
 {
-    private Movement playerMovement;
+    private Variables variables;
     
-    public StandardLevelCreator(Movement playerMovement)
+    public StandardLevelCreator(Variables variables)
     {
-        this.playerMovement = playerMovement;
+        this.variables = variables;
     }
 
     // Generates specified amount of platforms
@@ -35,14 +35,14 @@ class StandardLevelCreator : ILevelCreator
          * player holds jump button and therefore jumps higher)
          * and projectile motion distance for an object launched 
          * at an angle (when player releases jump button and 
-         * starts falling */
+         * starts falling) */
 
-        float vx = playerMovement.runSpeed;
-        float vy = playerMovement.jumpSpeed;
-        float jumpTime = playerMovement.maxJumpTime;
+        float vx = variables.playerRunSpeed;
+        float vy = variables.playerJumpSpeed;
+        float jumpTime = variables.playerMaxJumpTime;
         float g = -Physics2D.gravity.y;
 
-        /* Find projectile motion distance for ... at an angle*/
+        /* Find projectile motion distance */
         float maxHeight = vy * vy / (2 * g);
         float normalizedHeight = NormalizeDistance(maxHeight);
         float height = Random.Range(-normalizedHeight, normalizedHeight);

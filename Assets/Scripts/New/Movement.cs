@@ -7,7 +7,8 @@ public class Movement : MonoBehaviour
     public float jumpSpeed;
     public float maxJumpTime;
     public float waitStartTime;
-    
+
+    private Variables variables;
     private Transform jumpCheck;
     private Rigidbody2D playerRigidbody;
     private Animator animator;
@@ -19,6 +20,10 @@ public class Movement : MonoBehaviour
     void Awake()
     {
         DisableMoving();
+        variables = GameObject.Find("Variables").GetComponent<Variables>();
+        variables.playerRunSpeed = runSpeed;
+        variables.playerJumpSpeed = jumpSpeed;
+        variables.playerMaxJumpTime = maxJumpTime;
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         jumpCheck = transform.Find("JumpCheck");
@@ -40,8 +45,6 @@ public class Movement : MonoBehaviour
                 Debug.Log("Press 1 for GhostSkill");
                 Debug.Log("Press 2 for FlySkill");
                 Debug.Log("Press 3 for HighJumpSkill");
-
-                Debug.LogError("Fix bug with platform generation when using HighJumpSkill");
 
                 testVar = true;
             }

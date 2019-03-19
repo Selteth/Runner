@@ -15,8 +15,8 @@ public class LevelCreationManager : MonoBehaviour
 
     void Awake()
     {
+        levelCreator = new StandardLevelCreator(GameObject.Find("Variables").GetComponent<Variables>());
         GameObject player = GameObject.Find("Player");
-        levelCreator = new StandardLevelCreator(player.GetComponent<Movement>());
         playerTransform = player.transform;
         prefabSpriteRenderer = platformPrefab.GetComponentInChildren<SpriteRenderer>();
     }
