@@ -3,19 +3,19 @@ using System.Collections;
 
 public class FlySkill : SkillBase
 {
-    // Count of seconds that player can be in the air
-    private readonly float duration = 1.5f;
     // Whether the ability has been already used
     private bool abilityUsed = false;
     // Whether the player is in the air and is holding jump button
     private bool isFlying = false;
     private Movement movement;
     private Rigidbody2D playerRigidbody;
+    private Variables variables;
 
     void Awake()
     {
         movement = GetComponent<Movement>();
         playerRigidbody = GetComponent<Rigidbody2D>();
+        variables = GameObject.Find("Variables").GetComponent<Variables>();
     }
 
     void Update()
@@ -58,7 +58,7 @@ public class FlySkill : SkillBase
     // Disables ability after N seconds
     private IEnumerator TimeOver()
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(variables.flySkillDuration);
         StopFlying();
     }
 

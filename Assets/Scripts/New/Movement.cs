@@ -12,10 +12,11 @@ public class Movement : MonoBehaviour
     private Transform jumpCheck;
     private Rigidbody2D playerRigidbody;
     private Animator animator;
-    private float jumpTimeCounter = 0f;
+    //private float jumpTimeCounter = 0f;
     private bool isGrounded = false;
     private bool isJumping = false;
     private bool shouldJump = false;
+    private bool canFly = false;
 
     void Awake()
     {
@@ -116,7 +117,7 @@ public class Movement : MonoBehaviour
         {
             isGrounded = true;
             isJumping = false;
-            jumpTimeCounter = 0f;
+            canFly = true;
         }
         else
         {
@@ -130,13 +131,19 @@ public class Movement : MonoBehaviour
         {
             isJumping = true;
             isGrounded = false;
+            StartCoroutine(StopFlying());
         }
 
-        if (isJumping && shouldJump && jumpTimeCounter <= maxJumpTime)
+        if (isJumping && shouldJump && canFly)
         {
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpSpeed);
-            jumpTimeCounter += Time.fixedDeltaTime;
         }
+    }
+
+    private IEnumerator StopFlying()
+    {
+        yield return new WaitForSeconds(maxJumpTime);
+        canFly = false;
     }
 
 }
