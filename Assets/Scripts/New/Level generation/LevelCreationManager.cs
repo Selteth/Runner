@@ -15,7 +15,9 @@ public class LevelCreationManager : MonoBehaviour
 
     void Awake()
     {
-        levelCreator = new StandardLevelCreator(GameObject.Find("Variables").GetComponent<Variables>());
+        Variables variables = GameObject.Find("Variables").GetComponent<Variables>();
+
+        levelCreator = new GhostSkillCreator(variables, new StandardLevelCreator(variables));
         GameObject player = GameObject.Find("Player");
         playerTransform = player.transform;
         prefabSpriteRenderer = platformPrefab.GetComponentInChildren<SpriteRenderer>();
@@ -55,6 +57,18 @@ public class LevelCreationManager : MonoBehaviour
             platform.Size.x / lastPlatform.bounds.size.x,
             platform.Size.y / prefabSpriteRenderer.size.y
             );
+
+        if (platform.Prefabs != null)
+        {
+            foreach (GeneratedPlatformPrefab p in platform.Prefabs)
+            {
+                Vector2 position = newPlatformPosition + p.RelativePosition;
+                GameObject prefab = Instantiate(p.Prefab, position, Quaternion.identity);
+                BoxCollider2D collider = prefab.GetComponent<BoxCollider2D>();
+                SpriteRenderer renderer = prefab.GetComponent<SpriteRenderer>();
+                collider.transform.localScale = new Vector2(p.Size.x / collider.bounds.size.x, p.Size.y / renderer.size.y);
+            }
+        }
     }
     
     // Returns top right corner of a platform

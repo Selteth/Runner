@@ -10,13 +10,16 @@ public class Movement : MonoBehaviour
 
     private Variables variables;
     private Transform jumpCheck;
+    private BoxCollider2D playerCollider;
     private Rigidbody2D playerRigidbody;
     private Animator animator;
-    //private float jumpTimeCounter = 0f;
     private bool isGrounded = false;
     private bool isJumping = false;
     private bool shouldJump = false;
     private bool canFly = false;
+
+    private int groundLayer;
+    private int obstacleGroundLayer;
 
     void Awake()
     {
@@ -24,10 +27,15 @@ public class Movement : MonoBehaviour
         variables = GameObject.Find("Variables").GetComponent<Variables>();
         variables.playerRunSpeed = runSpeed;
         variables.playerJumpSpeed = jumpSpeed;
-        variables.playerMaxJumpTime = maxJumpTime;
+        variables.playerJumpTime = maxJumpTime;
+        playerCollider = GetComponent<BoxCollider2D>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         jumpCheck = transform.Find("JumpCheck");
+        
+        groundLayer = LayerMask.NameToLayer("Ground");
+        obstacleGroundLayer = LayerMask.NameToLayer("ObstacleGround");
+
         StartCoroutine("WaitBeforeStart");
     }
 
@@ -52,18 +60,21 @@ public class Movement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                ISkill skill = gameObject.AddComponent<GhostSkill>();
-                skill.Activate();
+                ISkill skill = gameObject.GetComponent<GhostSkill>();
+                if (skill == null)
+                    skill = gameObject.AddComponent<GhostSkill>();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                ISkill skill = gameObject.AddComponent<FlySkill>();
-                skill.Activate();
+                ISkill skill = gameObject.GetComponent<FlySkill>();
+                if (skill == null)
+                    skill = gameObject.AddComponent<FlySkill>();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                ISkill skill = gameObject.AddComponent<HighJumpSkill>();
-                skill.Activate();
+                ISkill skill = gameObject.GetComponent<HighJumpSkill>();
+                if (skill == null)
+                    skill = gameObject.AddComponent<HighJumpSkill>();
             }
         }
     }
@@ -77,7 +88,15 @@ public class Movement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics2D.Linecast(transform.position, jumpCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        Vector2 start = new Vector2(transform.position.x + playerCollider.bounds.extents.x - 0.1f,
+            transform.position.y - playerCollider.bounds.extents.y);
+        Vector2 end = jumpCheck.position;
+        
+        bool isOnGround = Physics2D.Linecast(start, end, 1 << groundLayer);
+        bool isOnObstacle = Physics2D.Linecast(start, end, 1 << obstacleGroundLayer)
+            && Physics2D.GetIgnoreLayerCollision(gameObject.layer, obstacleGroundLayer) == false;
+
+        return isOnGround || isOnObstacle;
     }
 
     public bool IsFalling()

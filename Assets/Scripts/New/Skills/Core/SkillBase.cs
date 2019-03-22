@@ -2,14 +2,8 @@
 
 public abstract class SkillBase : MonoBehaviour, ISkill
 {
-    public void Activate()
+    public void Deactivate()
     {
-        enabled = true;
-    }
-
-    protected void Deactivate()
-    {
-        enabled = false;
         Destroy(this);
     }
 }

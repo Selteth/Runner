@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a41ada72bcad14ea91da7ea8b10a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standardPlatformSize: {x: 5, y: 1}
+  standardObstacleSize: {x: 1.5, y: 4}
   playerRunSpeed: 0
   playerJumpSpeed: 0
-  playerMaxJumpTime: 0
+  playerJumpTime: 0
+  flySkillDuration: 0.9
+  highJumpMultiplier: 1.8
