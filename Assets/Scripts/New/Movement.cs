@@ -86,6 +86,18 @@ public class Movement : MonoBehaviour
         playerRigidbody.velocity = new Vector2(runSpeed, playerRigidbody.velocity.y);
     }
 
+    public void IncreaseRunSpeed(float val)
+    {
+        runSpeed += val;
+        variables.playerRunSpeed = runSpeed;
+    }
+
+    public void SetRunSpeed(float val)
+    {
+        runSpeed = val;
+        variables.playerRunSpeed = runSpeed;
+    }
+
     public bool IsGrounded()
     {
         Vector2 start = new Vector2(transform.position.x + playerCollider.bounds.extents.x - 0.1f,

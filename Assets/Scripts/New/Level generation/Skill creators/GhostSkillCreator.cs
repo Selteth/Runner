@@ -15,7 +15,7 @@ public class GhostSkillCreator : ILevelCreator
 
     public IList<GeneratedPlatform> GetNextPlatforms(int count)
     {
-        IList<GeneratedPlatform> platforms = standardLevelCreator.GetNextPlatforms(5);
+        IList<GeneratedPlatform> platforms = standardLevelCreator.GetNextPlatforms(count);
 
         Vector2 obstacleSize = variables.standardObstacleSize;
         for (int i = 0; i < platforms.Count; i++)

@@ -1,25 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class LevelCreationManager : MonoBehaviour
 {
     public BoxCollider2D lastPlatform;
     public BoxCollider2D platformPrefab;
     
-    private ILevelCreator levelCreator;
+    private ILevelCreator[] levelCreators;
+    private float[] creationChances;
     /* Distance from player to last generated platform */
     private float distanceToLastPlatform;
     private Transform playerTransform;
     /* Sprite renderer of platform prefab */
     private SpriteRenderer prefabSpriteRenderer;
+    private Movement movement;
+
+    private const float difficultyUpTime = 30.0f;
 
     void Awake()
     {
         Variables variables = GameObject.Find("Variables").GetComponent<Variables>();
+        StandardLevelCreator standardCreator = new StandardLevelCreator(variables);
+        levelCreators = new ILevelCreator[4];
 
-        levelCreator = new GhostSkillCreator(variables, new StandardLevelCreator(variables));
+        levelCreators[0] = standardCreator;
+        levelCreators[1] = new GhostSkillCreator(variables, standardCreator);
+        levelCreators[2] = new FlySkillCreator(variables);
+        levelCreators[3] = new HighJumpSkillCreator(variables);
+
+        creationChances = new float[levelCreators.Length];
+        creationChances[0] = 0.7f;
+        creationChances[1] = 0.1f;
+        creationChances[2] = 0.1f;
+        creationChances[3] = 0.1f;
+
         GameObject player = GameObject.Find("Player");
         playerTransform = player.transform;
+        movement = player.GetComponent<Movement>();
         prefabSpriteRenderer = platformPrefab.GetComponentInChildren<SpriteRenderer>();
     }
 
@@ -27,6 +45,8 @@ public class LevelCreationManager : MonoBehaviour
     {
         distanceToLastPlatform = GameObject.Find("Main Camera")
                .GetComponent<CameraInfo>().GetSize().x * 1.5f;
+
+        StartCoroutine(DifficultyUp());
     }
     
     void Update()
@@ -34,10 +54,24 @@ public class LevelCreationManager : MonoBehaviour
         while (lastPlatform.transform.position.x <=
             playerTransform.position.x + distanceToLastPlatform)
         {
-            IList<GeneratedPlatform> platforms = levelCreator.GetNextPlatforms(5);
+            int randomInt = ChooseCreator();
+            IList<GeneratedPlatform> platforms = levelCreators[randomInt].GetNextPlatforms(1);
             foreach (GeneratedPlatform g in platforms)
                 CreatePlatform(g);
         }
+    }
+
+    private int ChooseCreator()
+    {
+        int index = -1;
+        float number = Random.Range(0.0f, 1.0f);
+        while (number >= 0.0f)
+        {
+            ++index;
+            number -= creationChances[index];
+        }
+
+        return index;
     }
 
     // Instantiates specified platform
@@ -75,5 +109,28 @@ public class LevelCreationManager : MonoBehaviour
     private Vector2 GetPlatformEnd(BoxCollider2D platform)
     {
         return platform.bounds.center + platform.bounds.extents;
+    }
+
+    private IEnumerator DifficultyUp()
+    {
+        yield return new WaitForSeconds(difficultyUpTime);
+        if (creationChances[0] > 0.1f)
+        {
+            creationChances[0] -= 0.15f;
+            creationChances[1] += 0.05f;
+            creationChances[2] += 0.05f;
+            creationChances[3] += 0.05f;
+            movement.IncreaseRunSpeed(0.5f);
+            Debug.Log("Difficulty up!");
+            StartCoroutine(DifficultyUp());
+        }
+        else
+        {
+            creationChances[0] = 0.1f;
+            creationChances[1] = 0.3f;
+            creationChances[2] = 0.3f;
+            creationChances[3] = 0.3f;
+            movement.SetRunSpeed(0.7f);
+        }
     }
 }
