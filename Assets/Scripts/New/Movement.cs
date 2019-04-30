@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -21,8 +22,18 @@ public class Movement : MonoBehaviour
     private int groundLayer;
     private int obstacleGroundLayer;
 
+    public Button[] buttons;
+
+    void Start()
+    {
+        
+        buttons = FindObjectsOfType<Button>();
+        
+    }
+
     void Awake()
     {
+
         DisableMoving();
         variables = GameObject.Find("Variables").GetComponent<Variables>();
         variables.playerRunSpeed = runSpeed;
@@ -50,31 +61,26 @@ public class Movement : MonoBehaviour
         {
             if (!testVar)
             {
-                Debug.Log("Debug block and variable in Movement.Update()");
-                Debug.Log("Press 1 for GhostSkill");
-                Debug.Log("Press 2 for FlySkill");
-                Debug.Log("Press 3 for HighJumpSkill");
+                //Debug.Log("Debug block and variable in Movement.Update()");
+                //Debug.Log("Press 1 for GhostSkill");
+                //Debug.Log("Press 2 for FlySkill");
+                //Debug.Log("Press 3 for HighJumpSkill");
 
                 testVar = true;
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                ISkill skill = gameObject.GetComponent<GhostSkill>();
-                if (skill == null)
-                    skill = gameObject.AddComponent<GhostSkill>();
+                buttons[0].onClick.Invoke();
+             
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                ISkill skill = gameObject.GetComponent<FlySkill>();
-                if (skill == null)
-                    skill = gameObject.AddComponent<FlySkill>();
+                buttons[1].onClick.Invoke();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                ISkill skill = gameObject.GetComponent<HighJumpSkill>();
-                if (skill == null)
-                    skill = gameObject.AddComponent<HighJumpSkill>();
+                buttons[2].onClick.Invoke();
             }
         }
     }
