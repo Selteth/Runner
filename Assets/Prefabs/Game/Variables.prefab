@@ -48,5 +48,5 @@ MonoBehaviour:
   playerRunSpeed: 0
   playerJumpSpeed: 0
   playerJumpTime: 0
-  flySkillDuration: 0.9
-  highJumpMultiplier: 1.8
+  flySkillDuration: 1.1
+  highJumpMultiplier: 1.5
