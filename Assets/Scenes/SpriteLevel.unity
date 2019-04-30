@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1197,6 +1197,10 @@ PrefabInstance:
     - target: {fileID: 4380639326422532, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730360576099976, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dd73b36a11a1644ab7ed2ff7302ba5d, type: 3}
@@ -1346,6 +1350,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617634910502939161, guid: ae9c4bce8df5c1a43b8214605a1edbf7,
+        type: 3}
+      propertyPath: highJumpMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617634910502939161, guid: ae9c4bce8df5c1a43b8214605a1edbf7,
+        type: 3}
+      propertyPath: flySkillDuration
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae9c4bce8df5c1a43b8214605a1edbf7, type: 3}

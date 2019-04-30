@@ -6,7 +6,7 @@ public class FlySkill : SkillBase
     // Whether the ability has been already used
     private bool abilityUsed = false;
     // Whether the player is in the air and is holding jump button
-    private bool isFlying = false;
+    //private bool isFlying = false;
     private Movement movement;
     private Rigidbody2D playerRigidbody;
     private Variables variables;
@@ -20,22 +20,18 @@ public class FlySkill : SkillBase
 
     void Update()
     {
-        if (!movement.IsGrounded() && Input.GetButtonDown("Jump")
-            && !abilityUsed)
+
+
+        if (//!movement.IsGrounded()&& 
+            !abilityUsed)
         {
-            isFlying = true;
+            
+            Fly();
             StartCoroutine(TimeOver());
         }
-        if (isFlying)
-        {
-            if (Input.GetButton("Jump"))
-            {
-                if (!abilityUsed)
-                    Fly();
-            }
-            else
-                StopFlying();
-        }
+
+        if (Input.GetButtonDown("Jump"))
+            StopFlying();
 
         if (abilityUsed)
             Deactivate();
