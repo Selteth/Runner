@@ -393,8 +393,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "You need to run and jump using (space). \nPress icon or keys 1,2,3 on
-        keyboard to use spells:\nGhost spell makes you able to go throught black walls.\nDove
-        spell makes you fly for a while. Press space pne more time to stop it before
+        keyboard to use spells:\nGhost spell makes you able to go through black walls.\nDove
+        spell makes you fly for a while. Press space one more time to stop it before
         time ends.\nTrampoline makes your next jump higher.\nGood luck!"
       objectReference: {fileID: 0}
     - target: {fileID: 114268225536034282, guid: 0562026c267ee3949a947691c8fe9039,
